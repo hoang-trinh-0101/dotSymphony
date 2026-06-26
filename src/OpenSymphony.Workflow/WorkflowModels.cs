@@ -63,6 +63,24 @@ public sealed class IntegerLike
 }
 
 // ht: custom YAML deserializer for IntegerLike — accepts scalar int or string.
+// ht: custom YAML deserializer for JsonElement — reads any node as a raw object then serializes to JsonElement.
+// Needed because YamlDotNet can't cast scalar strings to JsonElement (used by OpenHands tool params).
+public sealed class JsonElementNodeDeserializer : INodeDeserializer
+{
+    public bool Deserialize(IParser reader, Type expectedType, Func<IParser, Type, object?> nestedObjectDeserializer, out object? value, ObjectDeserializer objectDeserializer)
+    {
+        if (expectedType != typeof(JsonElement))
+        {
+            value = null;
+            return false;
+        }
+
+        var raw = nestedObjectDeserializer(reader, typeof(object));
+        value = JsonSerializer.SerializeToElement(raw);
+        return true;
+    }
+}
+
 public sealed class IntegerLikeNodeDeserializer : INodeDeserializer
 {
     public bool Deserialize(IParser reader, Type expectedType, Func<IParser, Type, object?> nestedObjectDeserializer, out object? value, ObjectDeserializer objectDeserializer)
@@ -93,6 +111,35 @@ public sealed class IntegerLikeNodeDeserializer : INodeDeserializer
 
 public sealed record WorkflowDefinition(WorkflowFrontMatter FrontMatter, string PromptTemplate);
 
+// ht: SortedDictionary has reference equality, but Rust BTreeMap has value equality. Records ported from Rust
+// need value equality for collection members. Helper compares dictionaries/lists by content.
+internal static class CollectionEquality
+{
+    public static bool SortedDictEquals<TKey, TValue>(SortedDictionary<TKey, TValue>? a, SortedDictionary<TKey, TValue>? b)
+        where TKey : notnull
+    {
+        if (ReferenceEquals(a, b)) return true;
+        if (a is null || b is null) return false;
+        if (a.Count != b.Count) return false;
+        foreach (var (k, v) in a)
+        {
+            if (!b.TryGetValue(k, out var bv)) return false;
+            if (!Equals(v, bv)) return false;
+        }
+        return true;
+    }
+
+    public static bool ListEquals<T>(List<T>? a, List<T>? b)
+    {
+        if (ReferenceEquals(a, b)) return true;
+        if (a is null || b is null) return false;
+        if (a.Count != b.Count) return false;
+        for (int i = 0; i < a.Count; i++)
+            if (!Equals(a[i], b[i])) return false;
+        return true;
+    }
+}
+
 // ht: front matter types. YamlDotNet applies camelCase by default; we use ApplyNamingConvention=false
 // and explicit [YamlMember(Alias=...)] for snake_case field names matching serde.
 public sealed record WorkflowFrontMatter
@@ -118,6 +165,23 @@ public sealed record WorkflowFrontMatter
     // ht: extensions flatten — captured via custom deserializer to detect unknown top-level keys.
     [YamlIgnore]
     public SortedDictionary<string, object?> Extensions { get; init; } = new();
+
+    // ht: override equality so SortedDictionary members compare by content (matches Rust BTreeMap semantics).
+    public bool Equals(WorkflowFrontMatter? other) =>
+        other is not null
+        && Tracker == other.Tracker
+        && Polling == other.Polling
+        && Workspace == other.Workspace
+        && Hooks == other.Hooks
+        && Agent == other.Agent
+        && OpenHands == other.OpenHands
+        && Routing == other.Routing
+        && CollectionEquality.SortedDictEquals(Codex, other.Codex)
+        && CollectionEquality.SortedDictEquals(Logging, other.Logging)
+        && CollectionEquality.SortedDictEquals(Extensions, other.Extensions);
+
+    public override int GetHashCode() =>
+        HashCode.Combine(Tracker, Polling, Workspace, Hooks, Agent, OpenHands, Routing);
 }
 
 public sealed record TrackerFrontMatter
@@ -226,6 +290,18 @@ public sealed record OpenHandsLocalServerFrontMatter
     public string? ReadinessProbePath { get; init; }
     [YamlMember(Alias = "env", ApplyNamingConventions = false)]
     public SortedDictionary<string, string> Env { get; init; } = new();
+
+    // ht: override equality so Env (SortedDictionary) and Command (List) compare by content.
+    public bool Equals(OpenHandsLocalServerFrontMatter? other) =>
+        other is not null
+        && Enabled == other.Enabled
+        && CollectionEquality.ListEquals(Command, other.Command)
+        && Equals(StartupTimeoutMs, other.StartupTimeoutMs)
+        && ReadinessProbePath == other.ReadinessProbePath
+        && CollectionEquality.SortedDictEquals(Env, other.Env);
+
+    public override int GetHashCode() =>
+        HashCode.Combine(Enabled, StartupTimeoutMs, ReadinessProbePath);
 }
 
 public sealed record OpenHandsConversationFrontMatter

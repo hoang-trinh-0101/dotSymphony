@@ -156,6 +156,53 @@ tokio = { workspace = true }
         Assert.Equal(CodebaseAnalysisErrorKind.NotADirectory, result.Error.Kind);
         Assert.Contains("nonexistent", result.Error.Path);
     }
+
+    [Fact]
+    public void AnalyzeSkipsUnreadableSubdirectories()
+    {
+        if (!OperatingSystem.IsWindows())
+        {
+            // ht: Unix chmod-based test not ported; Windows ACL equivalent below
+            return;
+        }
+
+        using var tmp = new TempDir();
+        var root = CreateTestRepo(tmp.Path);
+        var unreadable = Path.Combine(root, "tools", "openhands-server", "workspace");
+        Directory.CreateDirectory(unreadable);
+
+        // Deny all access to the directory via Windows ACL
+        var dirInfo = new DirectoryInfo(unreadable);
+        var security = dirInfo.GetAccessControl();
+        security.SetAccessRuleProtection(true, false); // disable inheritance
+        var rules = security.GetAccessRules(true, true, typeof(System.Security.Principal.NTAccount));
+        foreach (System.Security.AccessControl.FileSystemAccessRule rule in rules)
+            security.RemoveAccessRule(rule);
+        // Add a deny rule for the current user
+        var currentUser = System.Security.Principal.WindowsIdentity.GetCurrent().Name;
+        security.AddAccessRule(new System.Security.AccessControl.FileSystemAccessRule(
+            currentUser,
+            System.Security.AccessControl.FileSystemRights.FullControl,
+            System.Security.AccessControl.AccessControlType.Deny));
+        dirInfo.SetAccessControl(security);
+
+        try
+        {
+            var analyzer = new CodebaseAnalyzer(root);
+            var result = analyzer.Analyze();
+            Assert.True(result.IsOk, "codebase analysis should ignore unreadable generated workspaces");
+        }
+        finally
+        {
+            // Restore access for cleanup
+            security.SetAccessRuleProtection(false, true);
+            security.RemoveAccessRule(new System.Security.AccessControl.FileSystemAccessRule(
+                currentUser,
+                System.Security.AccessControl.FileSystemRights.FullControl,
+                System.Security.AccessControl.AccessControlType.Deny));
+            dirInfo.SetAccessControl(security);
+        }
+    }
 }
 
 file sealed class TempDir : IDisposable

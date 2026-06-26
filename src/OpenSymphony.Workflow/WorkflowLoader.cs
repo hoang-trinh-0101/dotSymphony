@@ -552,6 +552,8 @@ public static class WorkflowLoader
         .WithNamingConvention(NullNamingConvention.Instance)
         // ht: register before ScalarNodeDeserializer so IntegerLike scalars aren't cast directly (InvalidCastException).
         .WithNodeDeserializer(new IntegerLikeNodeDeserializer(), s => s.Before<YamlDotNet.Serialization.NodeDeserializers.ScalarNodeDeserializer>())
+        // ht: register JsonElement support before ScalarNodeDeserializer so OpenHands tool params deserialize.
+        .WithNodeDeserializer(new JsonElementNodeDeserializer(), s => s.Before<YamlDotNet.Serialization.NodeDeserializers.ScalarNodeDeserializer>())
         .Build();
 
     private static string TrimLine(string line) => line.TrimEnd('\r', '\n');

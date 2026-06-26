@@ -87,6 +87,7 @@ openhands:
 # Assignment
 
 Ticket: {{ issue.identifier }}
+
 """;
 
     private static string RepoRoot()
