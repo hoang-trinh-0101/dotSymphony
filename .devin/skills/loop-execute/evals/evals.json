@@ -1,0 +1,41 @@
+{
+  "skill_name": "loop-execute",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "Create a simple Python script that prints 'Hello World'. Use the loop execution pattern.",
+      "expected_output": "A working hello_world.py file created in the project, verified and tested.",
+      "files": [],
+      "assertions": [
+        "hello_world.py file exists in the project",
+        "File contains 'print('Hello World')' or equivalent",
+        "The script runs successfully without errors",
+        "All 4 phases (plan, action, verify, test) were executed"
+      ]
+    },
+    {
+      "id": 2,
+      "prompt": "Refactor the following bad code to use proper error handling: def divide(a,b): return a/b",
+      "expected_output": "Refactored divide function with ZeroDivisionError handling and type checks.",
+      "files": [],
+      "assertions": [
+        "Function handles ZeroDivisionError gracefully",
+        "Function includes type validation for inputs",
+        "All tests pass after refactoring",
+        "Verify phase caught potential edge cases"
+      ]
+    },
+    {
+      "id": 3,
+      "prompt": "Fix the bug in this broken JavaScript: const x = null; console.log(x.y)",
+      "expected_output": "Fixed code with null check, verified no runtime errors.",
+      "files": [],
+      "assertions": [
+        "Code includes null/undefined check before accessing property",
+        "No runtime TypeError occurs",
+        "Verify phase identified the null dereference risk",
+        "Test phase confirms fix works"
+      ]
+    }
+  ]
+}

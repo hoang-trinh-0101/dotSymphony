@@ -42,3 +42,10 @@ apps/desktop/src-tauri/gen/
 !.opensymphony/memory/
 .opensymphony/memory/*
 !.opensymphony/memory/memory.yaml
+
+# .NET build artifacts
+**/bin/
+**/obj/
+*.user
+.vs/
+**/TestResults/
