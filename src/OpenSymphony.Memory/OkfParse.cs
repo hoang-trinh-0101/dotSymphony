@@ -96,14 +96,15 @@ public partial class OkfParse
         }
         if (endIdx < 0)
             return (new OkfFrontmatter(), contents);
-        var yaml = string.Join('\n', lines[1..endIdx]);
+        // ht: append trailing newline so YamlDotNet preserves literal block scalar (|) trailing newlines
+        var yaml = string.Join('\n', lines[1..endIdx]) + "\n";
         var body = string.Join('\n', lines[(endIdx + 1)..]);
         // Strip one leading newline to match Rust split_okf_frontmatter body semantics
         if (body.Length > 0 && body[0] == '\n')
             body = body[1..];
-        // Preserve trailing newline behavior
-        if (body.Length > 0 && !contents.EndsWith('\n'))
-            body = body.TrimEnd('\n');
+        // Ensure body ends with a single trailing newline (matches Rust raw string behavior)
+        if (body.Length > 0 && !body.EndsWith('\n'))
+            body = body + '\n';
         var frontmatter = ParseFrontmatter(yaml);
         return (frontmatter, body);
     }

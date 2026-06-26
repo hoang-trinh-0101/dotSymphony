@@ -485,7 +485,7 @@ parent: {parentIssue.Id}
 """;
     }
 
-    private static string YamlEscape(string s)
+    public static string YamlEscape(string s)
     {
         var result = new StringBuilder(s.Length + 16);
         var startsWithComplexKeyMarker = s.StartsWith("? ");

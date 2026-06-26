@@ -83,7 +83,7 @@ public sealed class PlanCompiler
             taxonomyViolations, validationMessages, underspecifiedSubIssues, dependencyMetadata);
     }
 
-    private static CompiledMilestone CompileMilestone(PlannedMilestone milestone)
+    public static CompiledMilestone CompileMilestone(PlannedMilestone milestone)
         => new(milestone.Name, milestone.Goal, milestone.Notes,
             milestone.Issues.Select(i => CompilerDomainHelpers.IssueToCompiled(i, milestone.Name)).ToList());
 
@@ -268,7 +268,7 @@ public sealed class PlanCompiler
     private sealed record ManifestYaml(string PlanningWave, string TasksDir, List<string> Milestones, List<ManifestTaskYaml> Tasks);
     private sealed record ManifestTaskYaml(string Id, string File);
 
-    private static LinearPublishReceipt BuildPublishReceipt(string planningWave, List<CompiledMilestone> compiledMilestones, string _tasksDir, TaskPackageManifest manifest)
+    public static LinearPublishReceipt BuildPublishReceipt(string planningWave, List<CompiledMilestone> compiledMilestones, string _tasksDir, TaskPackageManifest manifest)
     {
         var milestones = new SortedDictionary<string, MilestoneReceipt>();
         var tasks = new SortedDictionary<TaskId, LinearPublishEntity>();

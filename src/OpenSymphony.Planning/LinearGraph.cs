@@ -44,7 +44,7 @@ public sealed record LinearGraphAnalysis(
     DateTime AnalyzedAt,
     int TotalIssues,
     SortedDictionary<string, int> IssuesByState,
-    SortedDictionary<byte?, int> IssuesByPriority,
+    SortedDictionary<byte, int> IssuesByPriority,
     List<MilestoneSummary> Milestones,
     List<BlockerChain> BlockerChains,
     List<IssueSnapshot> UnblockedIssues,
@@ -71,7 +71,7 @@ public sealed class LinearGraphAnalyzer
         var analyzedAt = DateTime.UtcNow;
 
         var issuesByState = new SortedDictionary<string, int>();
-        var issuesByPriority = new SortedDictionary<byte?, int>();
+        var issuesByPriority = new SortedDictionary<byte, int>();
         var labelCounts = new SortedDictionary<string, int>();
 
         var milestonesMap = new SortedDictionary<string, MilestoneSummary>();
@@ -89,9 +89,12 @@ public sealed class LinearGraphAnalyzer
             issuesByState.TryGetValue(issue.State, out var sc);
             issuesByState[issue.State] = sc + 1;
 
-            // Count by priority
-            issuesByPriority.TryGetValue(issue.Priority, out var pc);
-            issuesByPriority[issue.Priority] = pc + 1;
+            // Count by priority (ht: skip null priorities — SortedDictionary rejects null keys)
+            if (issue.Priority is { } priority)
+            {
+                issuesByPriority.TryGetValue(priority, out var pc);
+                issuesByPriority[priority] = pc + 1;
+            }
 
             // Count labels
             foreach (var label in issue.Labels)

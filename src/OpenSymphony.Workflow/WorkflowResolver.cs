@@ -1193,6 +1193,11 @@ public static class WorkflowResolver
             return result;
         }
 
+        // ht: Unix root is stored as "/" segment; joining naively yields "//x". Use it as a prefix instead.
+        if (segments.Count > 0 && segments[0] == "/")
+        {
+            return "/" + string.Join("/", segments.Skip(1));
+        }
         return string.Join("/", segments);
     }
 

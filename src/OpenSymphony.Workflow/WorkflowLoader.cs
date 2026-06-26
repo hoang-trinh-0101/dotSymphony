@@ -550,7 +550,8 @@ public static class WorkflowLoader
 
     private static IDeserializer CreateSubDeserializer() => new DeserializerBuilder()
         .WithNamingConvention(NullNamingConvention.Instance)
-        .WithNodeDeserializer(new IntegerLikeNodeDeserializer(), s => s.Before<ObjectNodeDeserializer>())
+        // ht: register before ScalarNodeDeserializer so IntegerLike scalars aren't cast directly (InvalidCastException).
+        .WithNodeDeserializer(new IntegerLikeNodeDeserializer(), s => s.Before<YamlDotNet.Serialization.NodeDeserializers.ScalarNodeDeserializer>())
         .Build();
 
     private static string TrimLine(string line) => line.TrimEnd('\r', '\n');
