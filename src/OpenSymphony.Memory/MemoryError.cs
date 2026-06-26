@@ -24,10 +24,10 @@ public class MemoryError : Exception
 {
     public MemoryErrorKind Kind { get; }
     public string? Path { get; }
-    public string? RepoRoot { get; }
-    public string? BundleRoot { get; }
-    public MemoryError? SourceError { get; }
-    public MemoryError? CleanupError { get; }
+    public string? RepoRoot { get; set; }
+    public string? BundleRoot { get; set; }
+    public MemoryError? SourceError { get; set; }
+    public MemoryError? CleanupError { get; set; }
 
     public MemoryError(MemoryErrorKind kind, string message)
         : base(message)

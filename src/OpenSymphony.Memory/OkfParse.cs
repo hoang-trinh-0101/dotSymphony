@@ -317,9 +317,9 @@ public partial class OkfParse
         return findings;
     }
 
-    public static MemoryReindexReport ReindexBundle(string bundleRoot, MemoryIndexStore store, bool emit = true)
+    public static OkfReindexReport ReindexBundle(string bundleRoot, MemoryIndexStore store, bool emit = true)
     {
-        var report = new MemoryReindexReport();
+        var report = new OkfReindexReport();
         var conceptIndex = new Dictionary<string, OkfConcept>();
         var findings = new List<OkfLintFinding>();
 
@@ -472,7 +472,7 @@ public class OkfLintFinding
     public string Severity { get; set; } = "info";
 }
 
-public class MemoryReindexReport
+public class OkfReindexReport
 {
     public List<OkfConcept> Concepts { get; set; } = new();
     public List<OkfLintFinding> Findings { get; set; } = new();

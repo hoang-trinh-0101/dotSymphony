@@ -112,6 +112,19 @@ Ticket: {{ issue.identifier }}
     }
 
     [Fact]
+    public void Debug_TrackerFields()
+    {
+        var source = "---\ntracker:\n  kind: linear\n  api_key: ${TRACKER_API_KEY}\n  project_slug: sample-project\n" +
+            "  active_states:\n    - Todo\n  terminal_states:\n    - Done\n---\n{{ issue.identifier }}\n";
+        var workflow = WorkflowLoader.ParseWorkflow(source);
+        Assert.True(workflow.IsOk);
+        var t = workflow.Value.FrontMatter.Tracker;
+        System.Console.WriteLine($"Kind: '{t.Kind}' ApiKey: '{t.ApiKey}' ProjectSlug: '{t.ProjectSlug}'");
+        System.Console.WriteLine($"ActiveStates: {(t.ActiveStates == null ? "NULL" : string.Join(",", t.ActiveStates))}");
+        System.Console.WriteLine($"TerminalStates: {(t.TerminalStates == null ? "NULL" : string.Join(",", t.TerminalStates))}");
+    }
+
+    [Fact]
     public void ParsesValidFrontMatterAndPromptBody()
     {
         var workflow = WorkflowLoader.ParseWorkflow(SampleWorkflow());

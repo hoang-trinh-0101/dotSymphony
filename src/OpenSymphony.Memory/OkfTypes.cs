@@ -17,7 +17,7 @@ public class OkfFrontmatter
 
     public static OkfFrontmatter New(string conceptType)
     {
-        RequireOkfType(conceptType);
+        OkfTypes.RequireOkfType(conceptType);
         return new OkfFrontmatter { ConceptType = conceptType };
     }
 }
@@ -59,7 +59,7 @@ public class OkfConcept
 
     public static OkfConcept Create(string path, OkfFrontmatter frontmatter, string body)
     {
-        RequireOkfType(frontmatter.ConceptType);
+        OkfTypes.RequireOkfType(frontmatter.ConceptType);
         var bundlePath = new OkfBundlePath(path);
         var concept = new OkfConcept
         {
@@ -136,7 +136,7 @@ public class OkfImportReport
     public string TargetPath { get; set; } = "";
     public List<string> CopiedFiles { get; set; } = new();
     public int FindingCount { get; set; }
-    public MemoryReindexReport Reindex { get; set; } = new();
+    public OkfReindexReport Reindex { get; set; } = new();
 }
 
 public static partial class OkfTypes
@@ -236,8 +236,8 @@ public static partial class OkfTypes
                     case List<object?> list:
                         foreach (var v in list)
                         {
-                            var token = ValueAsString(v);
-                            if (token != null) PushSourceRef(refs, SourceRefFromToken(kind, token));
+                            var token2 = ValueAsString(v);
+                            if (token2 != null) PushSourceRef(refs, SourceRefFromToken(kind, token2));
                         }
                         break;
                     default:

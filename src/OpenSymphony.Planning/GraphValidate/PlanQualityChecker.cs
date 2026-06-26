@@ -94,9 +94,9 @@ public sealed class PlanQualityChecker
         {
             foreach (var issue in milestone.Issues)
             {
-                CheckTaskBlockerInverse(issue, milestone, inverse, findings);
+                CheckTaskBlockerInverse(new IssueBlockingTask(issue), milestone, inverse, findings);
                 foreach (var sub in issue.SubIssues)
-                    CheckTaskBlockerInverse(sub, milestone, inverse, findings);
+                    CheckTaskBlockerInverse(new SubIssueBlockingTask(sub), milestone, inverse, findings);
             }
         }
     }

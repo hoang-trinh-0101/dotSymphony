@@ -1,5 +1,6 @@
 using System.Text.Json.Serialization;
 using YamlDotNet.Serialization;
+using static OpenSymphony.Memory.Util;
 
 namespace OpenSymphony.Memory;
 
