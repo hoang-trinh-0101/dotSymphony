@@ -1,4 +1,5 @@
 using System.Text;
+using OpenSymphony.Domain;
 
 namespace OpenSymphony.Planning.Generator;
 

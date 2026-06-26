@@ -35,8 +35,8 @@ public abstract class LinearError : Exception
     public static LinearError InvalidConfiguration(string message)
         => new InvalidConfigurationError(message);
 
-    public static LinearError Request(string message)
-        => new RequestError(message);
+    public static LinearError Request(string message, bool isTimeout = false)
+        => new RequestError(message, isTimeout);
 
     public static LinearError ResponseBody(string operation, HttpStatusCode status, ResponseMetadata metadata, TimeSpan? retryAfter, string source)
         => new ResponseBodyError(operation, status, metadata, retryAfter, source);

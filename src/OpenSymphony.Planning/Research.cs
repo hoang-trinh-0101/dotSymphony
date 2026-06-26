@@ -1,3 +1,5 @@
+using OpenSymphony.Domain;
+
 namespace OpenSymphony.Planning;
 
 public enum ConfidenceLevel { High, Medium, Low }
