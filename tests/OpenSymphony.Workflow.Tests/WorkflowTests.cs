@@ -98,6 +98,20 @@ Ticket: {{ issue.identifier }}
     }
 
     [Fact]
+    public void Debug_FrontMatterParsing()
+    {
+        var source = "---\ntracker:\n  kind: linear\n  project_slug: sample-project\n---\nbody\n";
+        var split = WorkflowLoader.SplitFrontMatter(source);
+        Assert.NotNull(split);
+        System.Console.WriteLine($"FrontMatter: '{split!.Value.FrontMatter}'");
+        System.Console.WriteLine($"Body: '{split.Value.Body}'");
+        var workflow = WorkflowLoader.ParseWorkflow(source);
+        Assert.True(workflow.IsOk);
+        System.Console.WriteLine($"Tracker.Kind: '{workflow.Value.FrontMatter.Tracker.Kind}'");
+        System.Console.WriteLine($"PromptTemplate: '{workflow.Value.PromptTemplate}'");
+    }
+
+    [Fact]
     public void ParsesValidFrontMatterAndPromptBody()
     {
         var workflow = WorkflowLoader.ParseWorkflow(SampleWorkflow());

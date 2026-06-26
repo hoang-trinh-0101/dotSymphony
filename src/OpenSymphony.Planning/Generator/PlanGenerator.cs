@@ -91,7 +91,7 @@ public sealed class PlanGenerator
 
     private void ObserveTaskId(TaskId id)
     {
-        if (id.Value.StartsWith("TASK-") && int.TryParse(id.Value["TASK-"..], out var number))
+        if (id.Value.StartsWith("TASK-") && int.TryParse(id.Value["TASK-".Length..], out var number))
             _taskCounter = Math.Max(_taskCounter, number);
     }
 
@@ -533,7 +533,7 @@ parent: {parentIssue.Id}
         notes is not null ? CollapseMarkdownLine(notes) : "None";
 }
 
-file sealed class SubIssueGenerationContext
+internal sealed class SubIssueGenerationContext
 {
     public TaskId IssueId { get; }
     public string Requirement { get; }

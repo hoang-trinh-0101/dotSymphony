@@ -53,7 +53,7 @@ public sealed record InvalidTaskFile(TaskId TaskId, string FilePath, string Reas
 
 public sealed record UnknownMilestone(TaskId TaskId, string DeclaredMilestone);
 
-public sealed record UnknownDependency(TaskId FromTaskId, TaskId UnknownDependency);
+public sealed record UnknownDependency(TaskId FromTaskId, TaskId DependencyTaskId);
 
 public sealed record SelfBlock(TaskId TaskId);
 

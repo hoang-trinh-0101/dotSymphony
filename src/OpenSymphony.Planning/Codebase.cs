@@ -73,15 +73,15 @@ public sealed class CodebaseAnalyzer
             return Result<CodebaseAnalysis, CodebaseAnalysisError>.Err(fileInventory.Error);
 
         var inventory = fileInventory.Value;
-        var languages = DetectLanguages(inventory);
-        var packages = DetectPackages(_root, inventory);
+        var languages = CodebaseHelpers.DetectLanguages(inventory);
+        var packages = CodebaseHelpers.DetectPackages(_root, inventory);
         if (packages.IsErr)
             return Result<CodebaseAnalysis, CodebaseAnalysisError>.Err(packages.Error);
-        var buildSystems = DetectBuildSystems(_root);
-        var ownershipFiles = DetectOwnershipSignals(_root, inventory);
-        var integrationPoints = DetectIntegrationPoints(packages.Value, inventory);
-        var conventions = DetectConventions(_root, inventory);
-        var risks = AssessRisks(_root, packages.Value, integrationPoints);
+        var buildSystems = CodebaseHelpers.DetectBuildSystems(_root);
+        var ownershipFiles = CodebaseHelpers.DetectOwnershipSignals(_root, inventory);
+        var integrationPoints = CodebaseHelpers.DetectIntegrationPoints(packages.Value, inventory);
+        var conventions = CodebaseHelpers.DetectConventions(_root, inventory);
+        var risks = CodebaseHelpers.AssessRisks(_root, packages.Value, integrationPoints);
 
         var totalRust = inventory.Keys.Count(p => Path.GetExtension(p) == ".rs");
         var totalTs = inventory.Keys.Count(p =>

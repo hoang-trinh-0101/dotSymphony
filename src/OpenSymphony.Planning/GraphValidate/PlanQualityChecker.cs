@@ -89,7 +89,7 @@ public sealed class PlanQualityChecker
 
     private void CheckMissingInverseBlockers(List<PlanCheckFinding> findings)
     {
-        var inverse = BuildBlockerInverse(_artifacts);
+        var inverse = BlockingTaskHelpers.BuildBlockerInverse(_artifacts);
         foreach (var milestone in _artifacts.Milestones)
         {
             foreach (var issue in milestone.Issues)
@@ -135,7 +135,7 @@ public sealed class PlanQualityChecker
 
     private static void CheckTaskBlockerInverse(IBlockingTask task, PlannedMilestone milestone, SortedDictionary<TaskId, SortedSet<TaskId>> inverse, List<PlanCheckFinding> findings)
     {
-        foreach (var target in task.Blocks)
+        foreach (var target in task.GetBlocks())
         {
             var reciprocal = inverse.TryGetValue(target, out var set) ? set : new SortedSet<TaskId>();
             if (!reciprocal.Contains(task.Id))
