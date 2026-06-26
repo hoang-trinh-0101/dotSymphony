@@ -80,13 +80,15 @@ public partial class OkfParse
 
     public static (OkfFrontmatter Frontmatter, string Body) SplitFrontmatter(string contents)
     {
-        var lines = contents.Replace("\r\n", "\n").Split('\n');
+        var normalized = contents.Replace("\r\n", "\n").Replace('\r', '\n');
+        var lines = normalized.Split('\n');
         if (lines.Length == 0 || lines[0].Trim() != OkfFrontmatterDelimiter)
             return (new OkfFrontmatter(), contents);
         int endIdx = -1;
         for (int i = 1; i < lines.Length; i++)
         {
-            if (lines[i].Trim() == OkfFrontmatterDelimiter)
+            // ht: TrimEnd (not Trim) so indented YAML literal delimiters like "  ---" do not close frontmatter
+            if (lines[i].TrimEnd() == OkfFrontmatterDelimiter)
             {
                 endIdx = i;
                 break;
@@ -96,6 +98,9 @@ public partial class OkfParse
             return (new OkfFrontmatter(), contents);
         var yaml = string.Join('\n', lines[1..endIdx]);
         var body = string.Join('\n', lines[(endIdx + 1)..]);
+        // Strip one leading newline to match Rust split_okf_frontmatter body semantics
+        if (body.Length > 0 && body[0] == '\n')
+            body = body[1..];
         // Preserve trailing newline behavior
         if (body.Length > 0 && !contents.EndsWith('\n'))
             body = body.TrimEnd('\n');
@@ -247,7 +252,23 @@ public partial class OkfParse
 
     public static string RenderConcept(OkfConcept concept)
     {
-        var yaml = SerializeFrontmatterCanonical(concept.Frontmatter);
+        // ht: match Rust render_okf_concept — derived opensymphony is not written (legacy is source of truth);
+        // explicit opensymphony drops represented legacy fields before serializing.
+        var fm = concept.Frontmatter;
+        var renderFrontmatter = new OkfFrontmatter
+        {
+            ConceptType = fm.ConceptType,
+            Title = fm.Title,
+            Description = fm.Description,
+            Resource = fm.Resource,
+            Tags = fm.Tags,
+            Timestamp = fm.Timestamp,
+            Opensymphony = concept.DerivedOpensymphony ? null : fm.Opensymphony,
+            Extra = new Dictionary<string, object?>(fm.Extra),
+        };
+        if (!concept.DerivedOpensymphony && fm.Opensymphony != null)
+            OkfTypes.RemoveRepresentedLegacyOpensymphonyFields(renderFrontmatter.Extra, fm.Opensymphony);
+        var yaml = SerializeFrontmatterCanonical(renderFrontmatter);
         var sb = new StringBuilder();
         sb.AppendLine(OkfFrontmatterDelimiter);
         sb.Append(yaml);
@@ -269,9 +290,13 @@ public partial class OkfParse
         var concept = ParseConcept(path, contents);
         concept.DerivedOpensymphony = false;
         if (concept.Frontmatter.Opensymphony != null)
+        {
+            // Explicit opensymphony: remove legacy fields represented in the explicit block
+            OkfTypes.RemoveRepresentedLegacyOpensymphonyFields(concept.Frontmatter.Extra, concept.Frontmatter.Opensymphony);
             return concept;
+        }
+        // Derived opensymphony: keep legacy fields as source of truth, only attach metadata
         var metadata = OkfTypes.LegacyFrontmatterToOpensymphonyMetadata(concept.Frontmatter);
-        OkfTypes.RemoveRepresentedLegacyOpensymphonyFields(concept.Frontmatter.Extra, metadata);
         concept.Frontmatter.Opensymphony = metadata;
         concept.DerivedOpensymphony = true;
         return concept;

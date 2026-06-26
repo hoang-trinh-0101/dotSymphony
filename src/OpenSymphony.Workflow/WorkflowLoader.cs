@@ -128,7 +128,7 @@ public static class WorkflowLoader
             return Result<WorkflowFrontMatter?, WorkflowLoadError>.Ok(null);
         }
 
-        if (parsed is not IDictionary<string, object?> map)
+        if (parsed is not IDictionary)
         {
             // Could be a list (sequence) or scalar — treat as non-map.
             return Result<WorkflowFrontMatter?, WorkflowLoadError>.Ok(null);
@@ -550,7 +550,7 @@ public static class WorkflowLoader
 
     private static IDeserializer CreateSubDeserializer() => new DeserializerBuilder()
         .WithNamingConvention(NullNamingConvention.Instance)
-        .WithNodeDeserializer(new IntegerLikeNodeDeserializer(), s => s.InsteadOf<ObjectNodeDeserializer>())
+        .WithNodeDeserializer(new IntegerLikeNodeDeserializer(), s => s.Before<ObjectNodeDeserializer>())
         .Build();
 
     private static string TrimLine(string line) => line.TrimEnd('\r', '\n');

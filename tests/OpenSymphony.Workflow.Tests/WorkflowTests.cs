@@ -109,6 +109,10 @@ Ticket: {{ issue.identifier }}
         Assert.True(workflow.IsOk);
         System.Console.WriteLine($"Tracker.Kind: '{workflow.Value.FrontMatter.Tracker.Kind}'");
         System.Console.WriteLine($"PromptTemplate: '{workflow.Value.PromptTemplate}'");
+        // Debug: test sample workflow
+        var sw = WorkflowLoader.ParseWorkflow(SampleWorkflow());
+        System.Console.WriteLine($"SampleWorkflow IsOk: {sw.IsOk}");
+        if (sw.IsErr) System.Console.WriteLine($"SampleWorkflow Error: {sw.Error}");
     }
 
     [Fact]
@@ -122,6 +126,40 @@ Ticket: {{ issue.identifier }}
         System.Console.WriteLine($"Kind: '{t.Kind}' ApiKey: '{t.ApiKey}' ProjectSlug: '{t.ProjectSlug}'");
         System.Console.WriteLine($"ActiveStates: {(t.ActiveStates == null ? "NULL" : string.Join(",", t.ActiveStates))}");
         System.Console.WriteLine($"TerminalStates: {(t.TerminalStates == null ? "NULL" : string.Join(",", t.TerminalStates))}");
+        // Direct round-trip test
+        var yaml = "kind: linear\napi_key: ${TRACKER_API_KEY}\nproject_slug: sample-project\nactive_states:\n  - Todo\nterminal_states:\n  - Done\n";
+        var sub = new YamlDotNet.Serialization.DeserializerBuilder()
+            .WithNamingConvention(YamlDotNet.Serialization.NamingConventions.NullNamingConvention.Instance)
+            .WithNodeDeserializer(new IntegerLikeNodeDeserializer(), s => s.Before<YamlDotNet.Serialization.NodeDeserializers.ObjectNodeDeserializer>())
+            .Build();
+        var direct = sub.Deserialize<TrackerFrontMatter>(yaml);
+        System.Console.WriteLine($"DIRECT Kind: '{direct.Kind}' ApiKey: '{direct.ApiKey}' ProjectSlug: '{direct.ProjectSlug}'");
+        System.Console.WriteLine($"DIRECT ActiveStates: {(direct.ActiveStates == null ? "NULL" : string.Join(",", direct.ActiveStates))}");
+        // Test NodeToYaml equivalent
+        var trackerDict = new SortedDictionary<string, object?>(StringComparer.Ordinal)
+        {
+            ["kind"] = "linear",
+            ["api_key"] = "${TRACKER_API_KEY}",
+            ["project_slug"] = "sample-project",
+            ["active_states"] = new List<object?> { "Todo" },
+            ["terminal_states"] = new List<object?> { "Done" },
+        };
+        var ser = new YamlDotNet.Serialization.SerializerBuilder()
+            .WithNamingConvention(YamlDotNet.Serialization.NamingConventions.NullNamingConvention.Instance)
+            .Build();
+        var yaml2 = ser.Serialize(trackerDict);
+        System.Console.WriteLine($"NODETOYAML OUTPUT:\n{yaml2}");
+        var direct2 = sub.Deserialize<TrackerFrontMatter>(yaml2);
+        System.Console.WriteLine($"DIRECT2 Kind: '{direct2.Kind}' ApiKey: '{direct2.ApiKey}'");
+        // Check ParseYamlValue return type
+        var rawDeser = new YamlDotNet.Serialization.DeserializerBuilder()
+            .WithNamingConvention(YamlDotNet.Serialization.NamingConventions.NullNamingConvention.Instance)
+            .Build();
+        var fm = "tracker:\n  kind: linear\n  project_slug: sample-project\n";
+        var raw = rawDeser.Deserialize<object?>(fm);
+        System.Console.WriteLine($"RAW TYPE: {raw?.GetType().FullName}");
+        System.Console.WriteLine($"RAW is IDictionary<string,object?>: {raw is IDictionary<string, object?>}");
+        System.Console.WriteLine($"RAW is IDictionary: {raw is System.Collections.IDictionary}");
     }
 
     [Fact]

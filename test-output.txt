@@ -1,0 +1,428 @@
+Test run for D:\Learn\dotSymphony\tests\OpenSymphony.Workflow.Tests\bin\Debug\net10.0\OpenSymphony.Workflow.Tests.dll (.NETCoreApp,Version=v10.0)
+A total of 1 test files matched the specified pattern.
+D:\Learn\dotSymphony\tests\OpenSymphony.Workflow.Tests\bin\Debug\net10.0\OpenSymphony.Workflow.Tests.dll
+[xUnit.net 00:00:00.00] xUnit.net VSTest Adapter v3.1.4+50e68bbb8b (64-bit .NET 10.0.8)
+[xUnit.net 00:00:00.27]   Discovering: OpenSymphony.Workflow.Tests
+[xUnit.net 00:00:00.37]   Discovered:  OpenSymphony.Workflow.Tests
+[xUnit.net 00:00:00.42]   Starting:    OpenSymphony.Workflow.Tests
+[xUnit.net 00:00:00.55]     OpenSymphony.Workflow.Tests.WorkflowTests.TreatsUnmatchedLeadingDelimiterAsPromptBody [FAIL]
+[xUnit.net 00:00:00.55]       Assert.Equal() Failure: Values differ
+[xUnit.net 00:00:00.55]       Expected: WorkflowFrontMatter { Tracker = TrackerFrontMatter { Kind = , Endpoint = , ApiKey = , ProjectSlug = , ActiveStates = , TerminalStates =  }, Polling = PollingFrontMatter { IntervalMs =  }, Workspace = WorkspaceFrontMatter { Root =  }, Hooks = HooksFrontMatter { AfterCreate = , BeforeRun = , AfterRun = , BeforeRemove = , TimeoutMs =  }, Agent = AgentFrontMatter { MaxConcurrentAgents = , MaxTurns = , MaxRetryBackoffMs = , StallTimeoutMs = , MaxConcurrentAgentsByState =  }, OpenHands = OpenHandsFrontMatter { Transport = OpenHandsTransportFrontMatter { BaseUrl = , SessionApiKeyEnv =  }, LocalServer = OpenHandsLocalServerFrontMatter { Enabled = , Command = , StartupTimeoutMs = , ReadinessProbePath = , Env = System.Collections.Generic.SortedDictionary`2[System.String,System.String] }, Conversation = OpenHandsConversationFrontMatter { ReusePolicy = , PersistenceDirRelative = , MaxIterations = , StuckDetection = , ConfirmationPolicy = , Agent =  }, Websocket = OpenHandsWebSocketFrontMatter { Enabled = , ReadyTimeoutMs = , ReconnectInitialMs = , ReconnectMaxMs = , AuthMode = , QueryParamName =  }, LegacyLinearBridge =  }, Routing = RoutingFrontMatter { Harness = , Model = , ModelProfile = , HarnessEnv = , ModelEnv = , ModelProfileEnv =  }, Codex = , Logging = , Extensions = System.Collections.Generic.SortedDictionary`2[System.String,System.Object] }
+[xUnit.net 00:00:00.56]       Actual:   WorkflowFrontMatter { Tracker = TrackerFrontMatter { Kind = , Endpoint = , ApiKey = , ProjectSlug = , ActiveStates = , TerminalStates =  }, Polling = PollingFrontMatter { IntervalMs =  }, Workspace = WorkspaceFrontMatter { Root =  }, Hooks = HooksFrontMatter { AfterCreate = , BeforeRun = , AfterRun = , BeforeRemove = , TimeoutMs =  }, Agent = AgentFrontMatter { MaxConcurrentAgents = , MaxTurns = , MaxRetryBackoffMs = , StallTimeoutMs = , MaxConcurrentAgentsByState =  }, OpenHands = OpenHandsFrontMatter { Transport = OpenHandsTransportFrontMatter { BaseUrl = , SessionApiKeyEnv =  }, LocalServer = OpenHandsLocalServerFrontMatter { Enabled = , Command = , StartupTimeoutMs = , ReadinessProbePath = , Env = System.Collections.Generic.SortedDictionary`2[System.String,System.String] }, Conversation = OpenHandsConversationFrontMatter { ReusePolicy = , PersistenceDirRelative = , MaxIterations = , StuckDetection = , ConfirmationPolicy = , Agent =  }, Websocket = OpenHandsWebSocketFrontMatter { Enabled = , ReadyTimeoutMs = , ReconnectInitialMs = , ReconnectMaxMs = , AuthMode = , QueryParamName =  }, LegacyLinearBridge =  }, Routing = RoutingFrontMatter { Harness = , Model = , ModelProfile = , HarnessEnv = , ModelEnv = , ModelProfileEnv =  }, Codex = , Logging = , Extensions = System.Collections.Generic.SortedDictionary`2[System.String,System.Object] }
+[xUnit.net 00:00:00.56]       Stack Trace:
+[xUnit.net 00:00:00.56]         D:\Learn\dotSymphony\tests\OpenSymphony.Workflow.Tests\WorkflowTests.cs(205,0): at OpenSymphony.Workflow.Tests.WorkflowTests.TreatsUnmatchedLeadingDelimiterAsPromptBody()
+[xUnit.net 00:00:00.56]            at System.Reflection.MethodBaseInvoker.InterpretedInvoke_Method(Object obj, IntPtr* args)
+[xUnit.net 00:00:00.56]            at System.Reflection.MethodBaseInvoker.InvokeWithNoArgs(Object obj, BindingFlags invokeAttr)
+[xUnit.net 00:00:01.11]     OpenSymphony.Workflow.Tests.WorkflowTests.RejectsUnknownTemplateFilters [FAIL]
+[xUnit.net 00:00:01.11]       unknown filters should fail
+[xUnit.net 00:00:01.11]       Stack Trace:
+[xUnit.net 00:00:01.11]         D:\Learn\dotSymphony\tests\OpenSymphony.Workflow.Tests\WorkflowTests.cs(1198,0): at OpenSymphony.Workflow.Tests.WorkflowTests.RejectsUnknownTemplateFilters()
+[xUnit.net 00:00:01.11]            at System.Reflection.MethodBaseInvoker.InterpretedInvoke_Method(Object obj, IntPtr* args)
+[xUnit.net 00:00:01.11]            at System.Reflection.MethodBaseInvoker.InvokeWithNoArgs(Object obj, BindingFlags invokeAttr)
+[xUnit.net 00:00:01.11]     OpenSymphony.Workflow.Tests.WorkflowTests.TreatsNonMapDelimitedBlockAsPromptBody [FAIL]
+[xUnit.net 00:00:01.11]       Assert.Equal() Failure: Values differ
+[xUnit.net 00:00:01.11]       Expected: WorkflowFrontMatter { Tracker = TrackerFrontMatter { Kind = , Endpoint = , ApiKey = , ProjectSlug = , ActiveStates = , TerminalStates =  }, Polling = PollingFrontMatter { IntervalMs =  }, Workspace = WorkspaceFrontMatter { Root =  }, Hooks = HooksFrontMatter { AfterCreate = , BeforeRun = , AfterRun = , BeforeRemove = , TimeoutMs =  }, Agent = AgentFrontMatter { MaxConcurrentAgents = , MaxTurns = , MaxRetryBackoffMs = , StallTimeoutMs = , MaxConcurrentAgentsByState =  }, OpenHands = OpenHandsFrontMatter { Transport = OpenHandsTransportFrontMatter { BaseUrl = , SessionApiKeyEnv =  }, LocalServer = OpenHandsLocalServerFrontMatter { Enabled = , Command = , StartupTimeoutMs = , ReadinessProbePath = , Env = System.Collections.Generic.SortedDictionary`2[System.String,System.String] }, Conversation = OpenHandsConversationFrontMatter { ReusePolicy = , PersistenceDirRelative = , MaxIterations = , StuckDetection = , ConfirmationPolicy = , Agent =  }, Websocket = OpenHandsWebSocketFrontMatter { Enabled = , ReadyTimeoutMs = , ReconnectInitialMs = , ReconnectMaxMs = , AuthMode = , QueryParamName =  }, LegacyLinearBridge =  }, Routing = RoutingFrontMatter { Harness = , Model = , ModelProfile = , HarnessEnv = , ModelEnv = , ModelProfileEnv =  }, Codex = , Logging = , Extensions = System.Collections.Generic.SortedDictionary`2[System.String,System.Object] }
+[xUnit.net 00:00:01.11]       Actual:   WorkflowFrontMatter { Tracker = TrackerFrontMatter { Kind = , Endpoint = , ApiKey = , ProjectSlug = , ActiveStates = , TerminalStates =  }, Polling = PollingFrontMatter { IntervalMs =  }, Workspace = WorkspaceFrontMatter { Root =  }, Hooks = HooksFrontMatter { AfterCreate = , BeforeRun = , AfterRun = , BeforeRemove = , TimeoutMs =  }, Agent = AgentFrontMatter { MaxConcurrentAgents = , MaxTurns = , MaxRetryBackoffMs = , StallTimeoutMs = , MaxConcurrentAgentsByState =  }, OpenHands = OpenHandsFrontMatter { Transport = OpenHandsTransportFrontMatter { BaseUrl = , SessionApiKeyEnv =  }, LocalServer = OpenHandsLocalServerFrontMatter { Enabled = , Command = , StartupTimeoutMs = , ReadinessProbePath = , Env = System.Collections.Generic.SortedDictionary`2[System.String,System.String] }, Conversation = OpenHandsConversationFrontMatter { ReusePolicy = , PersistenceDirRelative = , MaxIterations = , StuckDetection = , ConfirmationPolicy = , Agent =  }, Websocket = OpenHandsWebSocketFrontMatter { Enabled = , ReadyTimeoutMs = , ReconnectInitialMs = , ReconnectMaxMs = , AuthMode = , QueryParamName =  }, LegacyLinearBridge =  }, Routing = RoutingFrontMatter { Harness = , Model = , ModelProfile = , HarnessEnv = , ModelEnv = , ModelProfileEnv =  }, Codex = , Logging = , Extensions = System.Collections.Generic.SortedDictionary`2[System.String,System.Object] }
+[xUnit.net 00:00:01.11]       Stack Trace:
+[xUnit.net 00:00:01.11]         D:\Learn\dotSymphony\tests\OpenSymphony.Workflow.Tests\WorkflowTests.cs(194,0): at OpenSymphony.Workflow.Tests.WorkflowTests.TreatsNonMapDelimitedBlockAsPromptBody()
+[xUnit.net 00:00:01.11]            at System.Reflection.MethodBaseInvoker.InterpretedInvoke_Method(Object obj, IntPtr* args)
+[xUnit.net 00:00:01.11]            at System.Reflection.MethodBaseInvoker.InvokeWithNoArgs(Object obj, BindingFlags invokeAttr)
+[xUnit.net 00:00:01.13]     OpenSymphony.Workflow.Tests.WorkflowTests.RejectsNonPositivePerStateConcurrencyLimits [FAIL]
+[xUnit.net 00:00:01.13]       workflow should parse
+[xUnit.net 00:00:01.13]       Stack Trace:
+[xUnit.net 00:00:01.13]         D:\Learn\dotSymphony\tests\OpenSymphony.Workflow.Tests\WorkflowTests.cs(1310,0): at OpenSymphony.Workflow.Tests.WorkflowTests.RejectsNonPositivePerStateConcurrencyLimits()
+[xUnit.net 00:00:01.13]            at System.Reflection.MethodBaseInvoker.InterpretedInvoke_Method(Object obj, IntPtr* args)
+[xUnit.net 00:00:01.13]            at System.Reflection.MethodBaseInvoker.InvokeWithNoArgs(Object obj, BindingFlags invokeAttr)
+  Failed OpenSymphony.Workflow.Tests.WorkflowTests.TreatsUnmatchedLeadingDelimiterAsPromptBody [39 ms]
+  Error Message:
+   Assert.Equal() Failure: Values differ
+Expected: WorkflowFrontMatter { Tracker = TrackerFrontMatter { Kind = , Endpoint = , ApiKey = , ProjectSlug = , ActiveStates = , TerminalStates =  }, Polling = PollingFrontMatter { IntervalMs =  }, Workspace = WorkspaceFrontMatter { Root =  }, Hooks = HooksFrontMatter { AfterCreate = , BeforeRun = , AfterRun = , BeforeRemove = , TimeoutMs =  }, Agent = AgentFrontMatter { MaxConcurrentAgents = , MaxTurns = , MaxRetryBackoffMs = , StallTimeoutMs = , MaxConcurrentAgentsByState =  }, OpenHands = OpenHandsFrontMatter { Transport = OpenHandsTransportFrontMatter { BaseUrl = , SessionApiKeyEnv =  }, LocalServer = OpenHandsLocalServerFrontMatter { Enabled = , Command = , StartupTimeoutMs = , ReadinessProbePath = , Env = System.Collections.Generic.SortedDictionary`2[System.String,System.String] }, Conversation = OpenHandsConversationFrontMatter { ReusePolicy = , PersistenceDirRelative = , MaxIterations = , StuckDetection = , ConfirmationPolicy = , Agent =  }, Websocket = OpenHandsWebSocketFrontMatter { Enabled = , ReadyTimeoutMs = , ReconnectInitialMs = , ReconnectMaxMs = , AuthMode = , QueryParamName =  }, LegacyLinearBridge =  }, Routing = RoutingFrontMatter { Harness = , Model = , ModelProfile = , HarnessEnv = , ModelEnv = , ModelProfileEnv =  }, Codex = , Logging = , Extensions = System.Collections.Generic.SortedDictionary`2[System.String,System.Object] }
+Actual:   WorkflowFrontMatter { Tracker = TrackerFrontMatter { Kind = , Endpoint = , ApiKey = , ProjectSlug = , ActiveStates = , TerminalStates =  }, Polling = PollingFrontMatter { IntervalMs =  }, Workspace = WorkspaceFrontMatter { Root =  }, Hooks = HooksFrontMatter { AfterCreate = , BeforeRun = , AfterRun = , BeforeRemove = , TimeoutMs =  }, Agent = AgentFrontMatter { MaxConcurrentAgents = , MaxTurns = , MaxRetryBackoffMs = , StallTimeoutMs = , MaxConcurrentAgentsByState =  }, OpenHands = OpenHandsFrontMatter { Transport = OpenHandsTransportFrontMatter { BaseUrl = , SessionApiKeyEnv =  }, LocalServer = OpenHandsLocalServerFrontMatter { Enabled = , Command = , StartupTimeoutMs = , ReadinessProbePath = , Env = System.Collections.Generic.SortedDictionary`2[System.String,System.String] }, Conversation = OpenHandsConversationFrontMatter { ReusePolicy = , PersistenceDirRelative = , MaxIterations = , StuckDetection = , ConfirmationPolicy = , Agent =  }, Websocket = OpenHandsWebSocketFrontMatter { Enabled = , ReadyTimeoutMs = , ReconnectInitialMs = , ReconnectMaxMs = , AuthMode = , QueryParamName =  }, LegacyLinearBridge =  }, Routing = RoutingFrontMatter { Harness = , Model = , ModelProfile = , HarnessEnv = , ModelEnv = , ModelProfileEnv =  }, Codex = , Logging = , Extensions = System.Collections.Generic.SortedDictionary`2[System.String,System.Object] }
+  Stack Trace:
+     at OpenSymphony.Workflow.Tests.WorkflowTests.TreatsUnmatchedLeadingDelimiterAsPromptBody() in D:\Learn\dotSymphony\tests\OpenSymphony.Workflow.Tests\WorkflowTests.cs:line 205
+   at System.Reflection.MethodBaseInvoker.InterpretedInvoke_Method(Object obj, IntPtr* args)
+   at System.Reflection.MethodBaseInvoker.InvokeWithNoArgs(Object obj, BindingFlags invokeAttr)
+  Failed OpenSymphony.Workflow.Tests.WorkflowTests.RejectsUnknownTemplateFilters [557 ms]
+  Error Message:
+   unknown filters should fail
+  Stack Trace:
+     at OpenSymphony.Workflow.Tests.WorkflowTests.RejectsUnknownTemplateFilters() in D:\Learn\dotSymphony\tests\OpenSymphony.Workflow.Tests\WorkflowTests.cs:line 1198
+   at System.Reflection.MethodBaseInvoker.InterpretedInvoke_Method(Object obj, IntPtr* args)
+   at System.Reflection.MethodBaseInvoker.InvokeWithNoArgs(Object obj, BindingFlags invokeAttr)
+  Failed OpenSymphony.Workflow.Tests.WorkflowTests.TreatsNonMapDelimitedBlockAsPromptBody [4 ms]
+  Error Message:
+   Assert.Equal() Failure: Values differ
+Expected: WorkflowFrontMatter { Tracker = TrackerFrontMatter { Kind = , Endpoint = , ApiKey = , ProjectSlug = , ActiveStates = , TerminalStates =  }, Polling = PollingFrontMatter { IntervalMs =  }, Workspace = WorkspaceFrontMatter { Root =  }, Hooks = HooksFrontMatter { AfterCreate = , BeforeRun = , AfterRun = , BeforeRemove = , TimeoutMs =  }, Agent = AgentFrontMatter { MaxConcurrentAgents = , MaxTurns = , MaxRetryBackoffMs = , StallTimeoutMs = , MaxConcurrentAgentsByState =  }, OpenHands = OpenHandsFrontMatter { Transport = OpenHandsTransportFrontMatter { BaseUrl = , SessionApiKeyEnv =  }, LocalServer = OpenHandsLocalServerFrontMatter { Enabled = , Command = , StartupTimeoutMs = , ReadinessProbePath = , Env = System.Collections.Generic.SortedDictionary`2[System.String,System.String] }, Conversation = OpenHandsConversationFrontMatter { ReusePolicy = , PersistenceDirRelative = , MaxIterations = , StuckDetection = , ConfirmationPolicy = , Agent =  }, Websocket = OpenHandsWebSocketFrontMatter { Enabled = , ReadyTimeoutMs = , ReconnectInitialMs = , ReconnectMaxMs = , AuthMode = , QueryParamName =  }, LegacyLinearBridge =  }, Routing = RoutingFrontMatter { Harness = , Model = , ModelProfile = , HarnessEnv = , ModelEnv = , ModelProfileEnv =  }, Codex = , Logging = , Extensions = System.Collections.Generic.SortedDictionary`2[System.String,System.Object] }
+Actual:   WorkflowFrontMatter { Tracker = TrackerFrontMatter { Kind = , Endpoint = , ApiKey = , ProjectSlug = , ActiveStates = , TerminalStates =  }, Polling = PollingFrontMatter { IntervalMs =  }, Workspace = WorkspaceFrontMatter { Root =  }, Hooks = HooksFrontMatter { AfterCreate = , BeforeRun = , AfterRun = , BeforeRemove = , TimeoutMs =  }, Agent = AgentFrontMatter { MaxConcurrentAgents = , MaxTurns = , MaxRetryBackoffMs = , StallTimeoutMs = , MaxConcurrentAgentsByState =  }, OpenHands = OpenHandsFrontMatter { Transport = OpenHandsTransportFrontMatter { BaseUrl = , SessionApiKeyEnv =  }, LocalServer = OpenHandsLocalServerFrontMatter { Enabled = , Command = , StartupTimeoutMs = , ReadinessProbePath = , Env = System.Collections.Generic.SortedDictionary`2[System.String,System.String] }, Conversation = OpenHandsConversationFrontMatter { ReusePolicy = , PersistenceDirRelative = , MaxIterations = , StuckDetection = , ConfirmationPolicy = , Agent =  }, Websocket = OpenHandsWebSocketFrontMatter { Enabled = , ReadyTimeoutMs = , ReconnectInitialMs = , ReconnectMaxMs = , AuthMode = , QueryParamName =  }, LegacyLinearBridge =  }, Routing = RoutingFrontMatter { Harness = , Model = , ModelProfile = , HarnessEnv = , ModelEnv = , ModelProfileEnv =  }, Codex = , Logging = , Extensions = System.Collections.Generic.SortedDictionary`2[System.String,System.Object] }
+  Stack Trace:
+     at OpenSymphony.Workflow.Tests.WorkflowTests.TreatsNonMapDelimitedBlockAsPromptBody() in D:\Learn\dotSymphony\tests\OpenSymphony.Workflow.Tests\WorkflowTests.cs:line 194
+   at System.Reflection.MethodBaseInvoker.InterpretedInvoke_Method(Object obj, IntPtr* args)
+   at System.Reflection.MethodBaseInvoker.InvokeWithNoArgs(Object obj, BindingFlags invokeAttr)
+  Failed OpenSymphony.Workflow.Tests.WorkflowTests.RejectsNonPositivePerStateConcurrencyLimits [14 ms]
+  Error Message:
+   workflow should parse
+  Stack Trace:
+     at OpenSymphony.Workflow.Tests.WorkflowTests.RejectsNonPositivePerStateConcurrencyLimits() in D:\Learn\dotSymphony\tests\OpenSymphony.Workflow.Tests\WorkflowTests.cs:line 1310
+   at System.Reflection.MethodBaseInvoker.InterpretedInvoke_Method(Object obj, IntPtr* args)
+   at System.Reflection.MethodBaseInvoker.InvokeWithNoArgs(Object obj, BindingFlags invokeAttr)
+  Passed OpenSymphony.Workflow.Tests.WorkflowTests.ExplicitTrackerApiKeyEnvReferenceMustResolve [10 ms]
+  Passed OpenSymphony.Workflow.Tests.WorkflowTests.ResolvesSelectedHarnessModelAndEnvironmentOverrides [29 ms]
+  Passed OpenSymphony.Workflow.Tests.WorkflowTests.RejectsUnsupportedOpenHandsWebsocketEnabledOverride [21 ms]
+  Passed OpenSymphony.Workflow.Tests.WorkflowTests.RejectsInvalidOpenHandsWebsocketAuthModeOverride [3 ms]
+  Passed OpenSymphony.Workflow.Tests.WorkflowTests.RejectsRemovedLegacyLinearBridgeConfig [2 ms]
+[xUnit.net 00:00:01.28]     OpenSymphony.Workflow.Tests.WorkflowTests.RejectsInvalidPerStateConcurrencyLimits [FAIL]
+[xUnit.net 00:00:01.28]       workflow should parse
+[xUnit.net 00:00:01.28]       Stack Trace:
+[xUnit.net 00:00:01.28]         D:\Learn\dotSymphony\tests\OpenSymphony.Workflow.Tests\WorkflowTests.cs(1293,0): at OpenSymphony.Workflow.Tests.WorkflowTests.RejectsInvalidPerStateConcurrencyLimits()
+[xUnit.net 00:00:01.28]            at System.Reflection.MethodBaseInvoker.InterpretedInvoke_Method(Object obj, IntPtr* args)
+[xUnit.net 00:00:01.28]            at System.Reflection.MethodBaseInvoker.InvokeWithNoArgs(Object obj, BindingFlags invokeAttr)
+  Passed OpenSymphony.Workflow.Tests.WorkflowTests.RejectsNonLoopbackHttpOpenHandsTransportBaseUrl [3 ms]
+  Passed OpenSymphony.Workflow.Tests.WorkflowTests.ResolvesFeatureGatedOpenHandsSubscriptionCredentialReference [30 ms]
+  Passed OpenSymphony.Workflow.Tests.WorkflowTests.AcceptsRepoLocalNamespaces [3 ms]
+  Passed OpenSymphony.Workflow.Tests.WorkflowTests.RejectsOpenHandsLlmBlocksWithoutModel [8 ms]
+  Passed OpenSymphony.Workflow.Tests.WorkflowTests.ResolvesOpenHandsLlmBaseUrlEnvOverride [4 ms]
+  Passed OpenSymphony.Workflow.Tests.WorkflowTests.LeavesOpenHandsLocalServerCommandUnsetWhenOmitted [2 ms]
+  Passed OpenSymphony.Workflow.Tests.WorkflowTests.PreservesIndentedDelimiterLinesInsideYamlBlockScalars [6 ms]
+  Failed OpenSymphony.Workflow.Tests.WorkflowTests.RejectsInvalidPerStateConcurrencyLimits [7 ms]
+  Error Message:
+   workflow should parse
+  Stack Trace:
+     at OpenSymphony.Workflow.Tests.WorkflowTests.RejectsInvalidPerStateConcurrencyLimits() in D:\Learn\dotSymphony\tests\OpenSymphony.Workflow.Tests\WorkflowTests.cs:line 1293
+   at System.Reflection.MethodBaseInvoker.InterpretedInvoke_Method(Object obj, IntPtr* args)
+   at System.Reflection.MethodBaseInvoker.InvokeWithNoArgs(Object obj, BindingFlags invokeAttr)
+  Passed OpenSymphony.Workflow.Tests.WorkflowTests.ResolvesOpenHandsLlmApiKeyEnvOverride [4 ms]
+[xUnit.net 00:00:01.28]       workflow should parse
+[xUnit.net 00:00:01.28]     OpenSymphony.Workflow.Tests.WorkflowTests.ResolvesConfiguredOpenHandsAgentToolsAndDefaultToolPolicy [FAIL]
+[xUnit.net 00:00:01.28]       Stack Trace:
+[xUnit.net 00:00:01.28]         D:\Learn\dotSymphony\tests\OpenSymphony.Workflow.Tests\WorkflowTests.cs(549,0): at OpenSymphony.Workflow.Tests.WorkflowTests.ResolvesConfiguredOpenHandsAgentToolsAndDefaultToolPolicy()
+[xUnit.net 00:00:01.28]            at System.Reflection.MethodBaseInvoker.InterpretedInvoke_Method(Object obj, IntPtr* args)
+[xUnit.net 00:00:01.28]            at System.Reflection.MethodBaseInvoker.InvokeWithNoArgs(Object obj, BindingFlags invokeAttr)
+[xUnit.net 00:00:01.33]     OpenSymphony.Workflow.Tests.WorkflowTests.ResolvesDefaultsAndOpenHandsExtension [FAIL]
+[xUnit.net 00:00:01.33]       Assert.Equal() Failure: Strings differ
+[xUnit.net 00:00:01.33]                   ↓ (pos 1)
+[xUnit.net 00:00:01.33]       Expected: "/symphony_workspaces"
+[xUnit.net 00:00:01.33]       Actual:   "//symphony_workspaces"
+[xUnit.net 00:00:01.33]                   ↑ (pos 1)
+[xUnit.net 00:00:01.33]       Stack Trace:
+[xUnit.net 00:00:01.33]         D:\Learn\dotSymphony\tests\OpenSymphony.Workflow.Tests\WorkflowTests.cs(308,0): at OpenSymphony.Workflow.Tests.WorkflowTests.ResolvesDefaultsAndOpenHandsExtension()
+[xUnit.net 00:00:01.33]            at System.Reflection.MethodBaseInvoker.InterpretedInvoke_Method(Object obj, IntPtr* args)
+[xUnit.net 00:00:01.33]            at System.Reflection.MethodBaseInvoker.InvokeWithNoArgs(Object obj, BindingFlags invokeAttr)
+[xUnit.net 00:00:01.35]     OpenSymphony.Workflow.Tests.WorkflowTests.DisablesOpenHandsCondenserWhenFlagIsFalse [FAIL]
+[xUnit.net 00:00:01.35]       workflow should parse
+[xUnit.net 00:00:01.35]       Stack Trace:
+[xUnit.net 00:00:01.35]         D:\Learn\dotSymphony\tests\OpenSymphony.Workflow.Tests\WorkflowTests.cs(531,0): at OpenSymphony.Workflow.Tests.WorkflowTests.DisablesOpenHandsCondenserWhenFlagIsFalse()
+[xUnit.net 00:00:01.35]            at System.Reflection.MethodBaseInvoker.InterpretedInvoke_Method(Object obj, IntPtr* args)
+[xUnit.net 00:00:01.35]            at System.Reflection.MethodBaseInvoker.InvokeWithNoArgs(Object obj, BindingFlags invokeAttr)
+FrontMatter: 'tracker:
+  kind: linear
+  project_slug: sample-project
+'
+Body: 'body
+'
+Tracker.Kind: 'linear'
+PromptTemplate: 'body
+'
+SampleWorkflow IsOk: False
+SampleWorkflow Error: WorkflowParseError { Message = failed to parse workflow front matter: (Line: 1, Col: 14, Idx: 13) - (Line: 1, Col: 18, Idx: 17): YamlDotNet.Core.YamlException: Exception during deserialization
+ ---> System.InvalidCastException: Invalid cast from 'System.String' to 'OpenSymphony.Workflow.IntegerLike'.
+   at System.Convert.DefaultToType(IConvertible value, Type targetType, IFormatProvider provider)
+   at YamlDotNet.Serialization.Utilities.TypeConverter.ChangeType(Object value, Type destinationType, CultureInfo culture, INamingConvention enumNamingConvention, ITypeInspector typeInspector)
+   at YamlDotNet.Serialization.Utilities.TypeConverter.ChangeType(Object value, Type destinationType, INamingConvention enumNamingConvention, ITypeInspector typeInspector)
+   at YamlDotNet.Serialization.Utilities.ReflectionTypeConverter.ChangeType(Object value, Type expectedType, INamingConvention enumNamingConvention, ITypeInspector typeInspector)
+   at YamlDotNet.Serialization.NodeDeserializers.ScalarNodeDeserializer.Deserialize(IParser parser, Type expectedType, Func`3 nestedObjectDeserializer, Object& value, ObjectDeserializer rootDeserializer)
+   at YamlDotNet.Serialization.ValueDeserializers.NodeValueDeserializer.DeserializeValue(IParser parser, Type expectedType, SerializerState state, IValueDeserializer nestedObjectDeserializer)
+   --- End of inner exception stack trace ---
+   at YamlDotNet.Serialization.ValueDeserializers.NodeValueDeserializer.DeserializeValue(IParser parser, Type expectedType, SerializerState state, IValueDeserializer nestedObjectDeserializer)
+   at YamlDotNet.Serialization.ValueDeserializers.AliasValueDeserializer.DeserializeValue(IParser parser, Type expectedType, SerializerState state, IValueDeserializer nestedObjectDeserializer)
+   at YamlDotNet.Serialization.ValueDeserializers.NodeValueDeserializer.<>c__DisplayClass6_0.<DeserializeValue>b__1(IParser r, Type t)
+   at YamlDotNet.Serialization.NodeDeserializers.ObjectNodeDeserializer.Deserialize(IParser parser, Type expectedType, Func`3 nestedObjectDeserializer, Object& value, ObjectDeserializer rootDeserializer)
+   at YamlDotNet.Serialization.ValueDeserializers.NodeValueDeserializer.DeserializeValue(IParser parser, Type expectedType, SerializerState state, IValueDeserializer nestedObjectDeserializer)
+   at YamlDotNet.Serialization.ValueDeserializers.AliasValueDeserializer.DeserializeValue(IParser parser, Type expectedType, SerializerState state, IValueDeserializer nestedObjectDeserializer)
+   at YamlDotNet.Serialization.Deserializer.Deserialize(IParser parser, Type type)
+   at YamlDotNet.Serialization.Deserializer.Deserialize[T](IParser parser)
+   at YamlDotNet.Serialization.Deserializer.Deserialize[T](TextReader input)
+   at YamlDotNet.Serialization.Deserializer.Deserialize[T](String input)
+   at OpenSymphony.Workflow.WorkflowLoader.DeserializeFrontMatter(String yaml) in D:\Learn\dotSymphony\src\OpenSymphony.Workflow\WorkflowLoader.cs:line 209
+   at OpenSymphony.Workflow.WorkflowLoader.ParseFrontMatter(String frontMatter) in D:\Learn\dotSymphony\src\OpenSymphony.Workflow\WorkflowLoader.cs:line 140, Source = (Line: 1, Col: 14, Idx: 13) - (Line: 1, Col: 18, Idx: 17): YamlDotNet.Core.YamlException: Exception during deserialization
+ ---> System.InvalidCastException: Invalid cast from 'System.String' to 'OpenSymphony.Workflow.IntegerLike'.
+   at System.Convert.DefaultToType(IConvertible value, Type targetType, IFormatProvider provider)
+   at YamlDotNet.Serialization.Utilities.TypeConverter.ChangeType(Object value, Type destinationType, CultureInfo culture, INamingConvention enumNamingConvention, ITypeInspector typeInspector)
+   at YamlDotNet.Serialization.Utilities.TypeConverter.ChangeType(Object value, Type destinationType, INamingConvention enumNamingConvention, ITypeInspector typeInspector)
+   at YamlDotNet.Serialization.Utilities.ReflectionTypeConverter.ChangeType(Object value, Type expectedType, INamingConvention enumNamingConvention, ITypeInspector typeInspector)
+   at YamlDotNet.Serialization.NodeDeserializers.ScalarNodeDeserializer.Deserialize(IParser parser, Type expectedType, Func`3 nestedObjectDeserializer, Object& value, ObjectDeserializer rootDeserializer)
+   at YamlDotNet.Serialization.ValueDeserializers.NodeValueDeserializer.DeserializeValue(IParser parser, Type expectedType, SerializerState state, IValueDeserializer nestedObjectDeserializer)
+   --- End of inner exception stack trace ---
+   at YamlDotNet.Serialization.ValueDeserializers.NodeValueDeserializer.DeserializeValue(IParser parser, Type expectedType, SerializerState state, IValueDeserializer nestedObjectDeserializer)
+   at YamlDotNet.Serialization.ValueDeserializers.AliasValueDeserializer.DeserializeValue(IParser parser, Type expectedType, SerializerState state, IValueDeserializer nestedObjectDeserializer)
+   at YamlDotNet.Serialization.ValueDeserializers.NodeValueDeserializer.<>c__DisplayClass6_0.<DeserializeValue>b__1(IParser r, Type t)
+   at YamlDotNet.Serialization.NodeDeserializers.ObjectNodeDeserializer.Deserialize(IParser parser, Type expectedType, Func`3 nestedObjectDeserializer, Object& value, ObjectDeserializer rootDeserializer)
+   at YamlDotNet.Serialization.ValueDeserializers.NodeValueDeserializer.DeserializeValue(IParser parser, Type expectedType, SerializerState state, IValueDeserializer nestedObjectDeserializer)
+   at YamlDotNet.Serialization.ValueDeserializers.AliasValueDeserializer.DeserializeValue(IParser parser, Type expectedType, SerializerState state, IValueDeserializer nestedObjectDeserializer)
+   at YamlDotNet.Serialization.Deserializer.Deserialize(IParser parser, Type type)
+   at YamlDotNet.Serialization.Deserializer.Deserialize[T](IParser parser)
+   at YamlDotNet.Serialization.Deserializer.Deserialize[T](TextReader input)
+   at YamlDotNet.Serialization.Deserializer.Deserialize[T](String input)
+   at OpenSymphony.Workflow.WorkflowLoader.DeserializeFrontMatter(String yaml) in D:\Learn\dotSymphony\src\OpenSymphony.Workflow\WorkflowLoader.cs:line 209
+   at OpenSymphony.Workflow.WorkflowLoader.ParseFrontMatter(String frontMatter) in D:\Learn\dotSymphony\src\OpenSymphony.Workflow\WorkflowLoader.cs:line 140 }
+  Failed OpenSymphony.Workflow.Tests.WorkflowTests.ResolvesConfiguredOpenHandsAgentToolsAndDefaultToolPolicy [13 ms]
+  Error Message:
+   workflow should parse
+  Stack Trace:
+     at OpenSymphony.Workflow.Tests.WorkflowTests.ResolvesConfiguredOpenHandsAgentToolsAndDefaultToolPolicy() in D:\Learn\dotSymphony\tests\OpenSymphony.Workflow.Tests\WorkflowTests.cs:line 549
+   at System.Reflection.MethodBaseInvoker.InterpretedInvoke_Method(Object obj, IntPtr* args)
+   at System.Reflection.MethodBaseInvoker.InvokeWithNoArgs(Object obj, BindingFlags invokeAttr)
+  Passed OpenSymphony.Workflow.Tests.WorkflowTests.RendersPromptForFirstRunAndContinuation [35 ms]
+  Failed OpenSymphony.Workflow.Tests.WorkflowTests.ResolvesDefaultsAndOpenHandsExtension [15 ms]
+  Error Message:
+   Assert.Equal() Failure: Strings differ
+            ↓ (pos 1)
+Expected: "/symphony_workspaces"
+Actual:   "//symphony_workspaces"
+            ↑ (pos 1)
+  Stack Trace:
+     at OpenSymphony.Workflow.Tests.WorkflowTests.ResolvesDefaultsAndOpenHandsExtension() in D:\Learn\dotSymphony\tests\OpenSymphony.Workflow.Tests\WorkflowTests.cs:line 308
+   at System.Reflection.MethodBaseInvoker.InterpretedInvoke_Method(Object obj, IntPtr* args)
+   at System.Reflection.MethodBaseInvoker.InvokeWithNoArgs(Object obj, BindingFlags invokeAttr)
+  Passed OpenSymphony.Workflow.Tests.WorkflowTests.ResolvesOpenHandsWebsocketAuthModeOverride [7 ms]
+  Failed OpenSymphony.Workflow.Tests.WorkflowTests.DisablesOpenHandsCondenserWhenFlagIsFalse [5 ms]
+  Error Message:
+   workflow should parse
+  Stack Trace:
+     at OpenSymphony.Workflow.Tests.WorkflowTests.DisablesOpenHandsCondenserWhenFlagIsFalse() in D:\Learn\dotSymphony\tests\OpenSymphony.Workflow.Tests\WorkflowTests.cs:line 531
+   at System.Reflection.MethodBaseInvoker.InterpretedInvoke_Method(Object obj, IntPtr* args)
+   at System.Reflection.MethodBaseInvoker.InvokeWithNoArgs(Object obj, BindingFlags invokeAttr)
+  Passed OpenSymphony.Workflow.Tests.WorkflowTests.ResolvesOpenHandsTransportSessionApiKeyEnv [2 ms]
+  Passed OpenSymphony.Workflow.Tests.WorkflowTests.UsesDefaultPromptWhenBodyIsEmpty [1 ms]
+  Passed OpenSymphony.Workflow.Tests.WorkflowTests.Debug_FrontMatterParsing [17 ms]
+  Passed OpenSymphony.Workflow.Tests.WorkflowTests.ErrorsOnMissingRequiredTrackerConfig [3 ms]
+[xUnit.net 00:00:01.41]     OpenSymphony.Workflow.Tests.WorkflowTests.RejectsUnsupportedOpenHandsLocalServerStartupTimeoutOverride [FAIL]
+[xUnit.net 00:00:01.41]       workflow should parse
+[xUnit.net 00:00:01.41]       Stack Trace:
+[xUnit.net 00:00:01.41]         D:\Learn\dotSymphony\tests\OpenSymphony.Workflow.Tests\WorkflowTests.cs(382,0): at OpenSymphony.Workflow.Tests.WorkflowTests.RejectsUnsupportedOpenHandsLocalServerStartupTimeoutOverride()
+[xUnit.net 00:00:01.41]            at System.Reflection.MethodBaseInvoker.InterpretedInvoke_Method(Object obj, IntPtr* args)
+[xUnit.net 00:00:01.41]            at System.Reflection.MethodBaseInvoker.InvokeWithNoArgs(Object obj, BindingFlags invokeAttr)
+  Passed OpenSymphony.Workflow.Tests.WorkflowTests.ResolvesOpenHandsWebsocketQueryParamOverride [7 ms]
+  Passed OpenSymphony.Workflow.Tests.WorkflowTests.RejectsUnsupportedIpv6OpenHandsTransportBaseUrl [3 ms]
+  Passed OpenSymphony.Workflow.Tests.WorkflowTests.GatesOpenHandsSubscriptionCredentialModeByFeature [5 ms]
+  Passed OpenSymphony.Workflow.Tests.WorkflowTests.RejectsUnsupportedOpenHandsLocalServerEnabledOverride [4 ms]
+  Passed OpenSymphony.Workflow.Tests.WorkflowTests.SelectedOpenHandsModelOverridesConversationModel [11 ms]
+  Failed OpenSymphony.Workflow.Tests.WorkflowTests.RejectsUnsupportedOpenHandsLocalServerStartupTimeoutOverride [4 ms]
+  Error Message:
+   workflow should parse
+  Stack Trace:
+     at OpenSymphony.Workflow.Tests.WorkflowTests.RejectsUnsupportedOpenHandsLocalServerStartupTimeoutOverride() in D:\Learn\dotSymphony\tests\OpenSymphony.Workflow.Tests\WorkflowTests.cs:line 382
+   at System.Reflection.MethodBaseInvoker.InterpretedInvoke_Method(Object obj, IntPtr* args)
+   at System.Reflection.MethodBaseInvoker.InvokeWithNoArgs(Object obj, BindingFlags invokeAttr)
+  Passed OpenSymphony.Workflow.Tests.WorkflowTests.RejectsUnsupportedOpenHandsLocalServerEnvOverride [5 ms]
+  Passed OpenSymphony.Workflow.Tests.WorkflowTests.ReportsMissingWorkflowFile [4 ms]
+  Passed OpenSymphony.Workflow.Tests.WorkflowTests.PreservesExplicitEmptyOpenHandsAgentToolsForOptOut [12 ms]
+[xUnit.net 00:00:01.44]     OpenSymphony.Workflow.Tests.WorkflowTests.ParsesValidFrontMatterAndPromptBody [FAIL]
+[xUnit.net 00:00:01.44]       sample workflow should parse
+[xUnit.net 00:00:01.44]       Stack Trace:
+[xUnit.net 00:00:01.44]         D:\Learn\dotSymphony\tests\OpenSymphony.Workflow.Tests\WorkflowTests.cs(169,0): at OpenSymphony.Workflow.Tests.WorkflowTests.ParsesValidFrontMatterAndPromptBody()
+[xUnit.net 00:00:01.44]            at System.Reflection.MethodBaseInvoker.InterpretedInvoke_Method(Object obj, IntPtr* args)
+[xUnit.net 00:00:01.44]            at System.Reflection.MethodBaseInvoker.InvokeWithNoArgs(Object obj, BindingFlags invokeAttr)
+[xUnit.net 00:00:01.44]     OpenSymphony.Workflow.Tests.WorkflowTests.ResolvesOpenHandsCondenserConfiguration [FAIL]
+[xUnit.net 00:00:01.44]       workflow should parse
+[xUnit.net 00:00:01.44]       Stack Trace:
+[xUnit.net 00:00:01.44]         D:\Learn\dotSymphony\tests\OpenSymphony.Workflow.Tests\WorkflowTests.cs(492,0): at OpenSymphony.Workflow.Tests.WorkflowTests.ResolvesOpenHandsCondenserConfiguration()
+[xUnit.net 00:00:01.44]            at System.Reflection.MethodBaseInvoker.InterpretedInvoke_Method(Object obj, IntPtr* args)
+[xUnit.net 00:00:01.44]            at System.Reflection.MethodBaseInvoker.InvokeWithNoArgs(Object obj, BindingFlags invokeAttr)
+[xUnit.net 00:00:01.46]     OpenSymphony.Workflow.Tests.WorkflowTests.ResolvesOpenHandsWebsocketRuntimeOverrides [FAIL]
+[xUnit.net 00:00:01.46]       workflow should parse
+[xUnit.net 00:00:01.46]       Stack Trace:
+[xUnit.net 00:00:01.46]         D:\Learn\dotSymphony\tests\OpenSymphony.Workflow.Tests\WorkflowTests.cs(883,0): at OpenSymphony.Workflow.Tests.WorkflowTests.ResolvesOpenHandsWebsocketRuntimeOverrides()
+[xUnit.net 00:00:01.46]            at System.Reflection.MethodBaseInvoker.InterpretedInvoke_Method(Object obj, IntPtr* args)
+[xUnit.net 00:00:01.46]            at System.Reflection.MethodBaseInvoker.InvokeWithNoArgs(Object obj, BindingFlags invokeAttr)
+[xUnit.net 00:00:01.47]     OpenSymphony.Workflow.Tests.WorkflowTests.RejectsUnknownTemplateVariables [FAIL]
+[xUnit.net 00:00:01.47]       missing template variables should fail
+[xUnit.net 00:00:01.47]       Stack Trace:
+[xUnit.net 00:00:01.47]         D:\Learn\dotSymphony\tests\OpenSymphony.Workflow.Tests\WorkflowTests.cs(1176,0): at OpenSymphony.Workflow.Tests.WorkflowTests.RejectsUnknownTemplateVariables()
+[xUnit.net 00:00:01.47]            at System.Reflection.MethodBaseInvoker.InterpretedInvoke_Method(Object obj, IntPtr* args)
+[xUnit.net 00:00:01.47]            at System.Reflection.MethodBaseInvoker.InvokeWithNoArgs(Object obj, BindingFlags invokeAttr)
+Kind: 'linear' ApiKey: '${TRACKER_API_KEY}' ProjectSlug: 'sample-project'
+ActiveStates: Todo
+TerminalStates: Done
+DIRECT Kind: 'linear' ApiKey: '${TRACKER_API_KEY}' ProjectSlug: 'sample-project'
+DIRECT ActiveStates: Todo
+NODETOYAML OUTPUT:
+active_states:
+- Todo
+api_key: ${TRACKER_API_KEY}
+kind: linear
+project_slug: sample-project
+terminal_states:
+- Done
+DIRECT2 Kind: 'linear' ApiKey: '${TRACKER_API_KEY}'
+RAW TYPE: System.Collections.Generic.Dictionary`2[[System.Object, System.Private.CoreLib, Version=10.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.Object, System.Private.CoreLib, Version=10.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]
+RAW is IDictionary<string,object?>: False
+RAW is IDictionary: True
+  Failed OpenSymphony.Workflow.Tests.WorkflowTests.ParsesValidFrontMatterAndPromptBody [5 ms]
+  Error Message:
+   sample workflow should parse
+  Stack Trace:
+     at OpenSymphony.Workflow.Tests.WorkflowTests.ParsesValidFrontMatterAndPromptBody() in D:\Learn\dotSymphony\tests\OpenSymphony.Workflow.Tests\WorkflowTests.cs:line 169
+   at System.Reflection.MethodBaseInvoker.InterpretedInvoke_Method(Object obj, IntPtr* args)
+   at System.Reflection.MethodBaseInvoker.InvokeWithNoArgs(Object obj, BindingFlags invokeAttr)
+  Failed OpenSymphony.Workflow.Tests.WorkflowTests.ResolvesOpenHandsCondenserConfiguration [5 ms]
+  Error Message:
+   workflow should parse
+  Stack Trace:
+     at OpenSymphony.Workflow.Tests.WorkflowTests.ResolvesOpenHandsCondenserConfiguration() in D:\Learn\dotSymphony\tests\OpenSymphony.Workflow.Tests\WorkflowTests.cs:line 492
+   at System.Reflection.MethodBaseInvoker.InterpretedInvoke_Method(Object obj, IntPtr* args)
+   at System.Reflection.MethodBaseInvoker.InvokeWithNoArgs(Object obj, BindingFlags invokeAttr)
+  Passed OpenSymphony.Workflow.Tests.WorkflowTests.DefaultsOpenHandsCondenserThresholdsWhenEnabledWithoutOverrides [5 ms]
+  Passed OpenSymphony.Workflow.Tests.WorkflowTests.RejectsUnsupportedOpenHandsAgentOptionOverrides [9 ms]
+  Failed OpenSymphony.Workflow.Tests.WorkflowTests.ResolvesOpenHandsWebsocketRuntimeOverrides [3 ms]
+  Error Message:
+   workflow should parse
+  Stack Trace:
+     at OpenSymphony.Workflow.Tests.WorkflowTests.ResolvesOpenHandsWebsocketRuntimeOverrides() in D:\Learn\dotSymphony\tests\OpenSymphony.Workflow.Tests\WorkflowTests.cs:line 883
+   at System.Reflection.MethodBaseInvoker.InterpretedInvoke_Method(Object obj, IntPtr* args)
+   at System.Reflection.MethodBaseInvoker.InvokeWithNoArgs(Object obj, BindingFlags invokeAttr)
+  Failed OpenSymphony.Workflow.Tests.WorkflowTests.RejectsUnknownTemplateVariables [2 ms]
+  Error Message:
+   missing template variables should fail
+  Stack Trace:
+     at OpenSymphony.Workflow.Tests.WorkflowTests.RejectsUnknownTemplateVariables() in D:\Learn\dotSymphony\tests\OpenSymphony.Workflow.Tests\WorkflowTests.cs:line 1176
+   at System.Reflection.MethodBaseInvoker.InterpretedInvoke_Method(Object obj, IntPtr* args)
+   at System.Reflection.MethodBaseInvoker.InvokeWithNoArgs(Object obj, BindingFlags invokeAttr)
+  Passed OpenSymphony.Workflow.Tests.WorkflowTests.ResolvesOpenHandsConversationReusePolicyOverrideForRuntimeConsumers [7 ms]
+  Passed OpenSymphony.Workflow.Tests.WorkflowTests.Debug_TrackerFields [5 ms]
+  Passed OpenSymphony.Workflow.Tests.WorkflowTests.RejectsUnsupportedOpenHandsLocalServerReadinessProbePathOverride [3 ms]
+[xUnit.net 00:00:01.49]     OpenSymphony.Workflow.Tests.WorkflowTests.ParsesWorkflowWithoutFrontMatter [FAIL]
+[xUnit.net 00:00:01.49]       Assert.Equal() Failure: Values differ
+[xUnit.net 00:00:01.49]       Expected: WorkflowFrontMatter { Tracker = TrackerFrontMatter { Kind = , Endpoint = , ApiKey = , ProjectSlug = , ActiveStates = , TerminalStates =  }, Polling = PollingFrontMatter { IntervalMs =  }, Workspace = WorkspaceFrontMatter { Root =  }, Hooks = HooksFrontMatter { AfterCreate = , BeforeRun = , AfterRun = , BeforeRemove = , TimeoutMs =  }, Agent = AgentFrontMatter { MaxConcurrentAgents = , MaxTurns = , MaxRetryBackoffMs = , StallTimeoutMs = , MaxConcurrentAgentsByState =  }, OpenHands = OpenHandsFrontMatter { Transport = OpenHandsTransportFrontMatter { BaseUrl = , SessionApiKeyEnv =  }, LocalServer = OpenHandsLocalServerFrontMatter { Enabled = , Command = , StartupTimeoutMs = , ReadinessProbePath = , Env = System.Collections.Generic.SortedDictionary`2[System.String,System.String] }, Conversation = OpenHandsConversationFrontMatter { ReusePolicy = , PersistenceDirRelative = , MaxIterations = , StuckDetection = , ConfirmationPolicy = , Agent =  }, Websocket = OpenHandsWebSocketFrontMatter { Enabled = , ReadyTimeoutMs = , ReconnectInitialMs = , ReconnectMaxMs = , AuthMode = , QueryParamName =  }, LegacyLinearBridge =  }, Routing = RoutingFrontMatter { Harness = , Model = , ModelProfile = , HarnessEnv = , ModelEnv = , ModelProfileEnv =  }, Codex = , Logging = , Extensions = System.Collections.Generic.SortedDictionary`2[System.String,System.Object] }
+[xUnit.net 00:00:01.49]       Actual:   WorkflowFrontMatter { Tracker = TrackerFrontMatter { Kind = , Endpoint = , ApiKey = , ProjectSlug = , ActiveStates = , TerminalStates =  }, Polling = PollingFrontMatter { IntervalMs =  }, Workspace = WorkspaceFrontMatter { Root =  }, Hooks = HooksFrontMatter { AfterCreate = , BeforeRun = , AfterRun = , BeforeRemove = , TimeoutMs =  }, Agent = AgentFrontMatter { MaxConcurrentAgents = , MaxTurns = , MaxRetryBackoffMs = , StallTimeoutMs = , MaxConcurrentAgentsByState =  }, OpenHands = OpenHandsFrontMatter { Transport = OpenHandsTransportFrontMatter { BaseUrl = , SessionApiKeyEnv =  }, LocalServer = OpenHandsLocalServerFrontMatter { Enabled = , Command = , StartupTimeoutMs = , ReadinessProbePath = , Env = System.Collections.Generic.SortedDictionary`2[System.String,System.String] }, Conversation = OpenHandsConversationFrontMatter { ReusePolicy = , PersistenceDirRelative = , MaxIterations = , StuckDetection = , ConfirmationPolicy = , Agent =  }, Websocket = OpenHandsWebSocketFrontMatter { Enabled = , ReadyTimeoutMs = , ReconnectInitialMs = , ReconnectMaxMs = , AuthMode = , QueryParamName =  }, LegacyLinearBridge =  }, Routing = RoutingFrontMatter { Harness = , Model = , ModelProfile = , HarnessEnv = , ModelEnv = , ModelProfileEnv =  }, Codex = , Logging = , Extensions = System.Collections.Generic.SortedDictionary`2[System.String,System.Object] }
+[xUnit.net 00:00:01.49]       Stack Trace:
+[xUnit.net 00:00:01.49]         D:\Learn\dotSymphony\tests\OpenSymphony.Workflow.Tests\WorkflowTests.cs(183,0): at OpenSymphony.Workflow.Tests.WorkflowTests.ParsesWorkflowWithoutFrontMatter()
+[xUnit.net 00:00:01.49]            at System.Reflection.MethodBaseInvoker.InterpretedInvoke_Method(Object obj, IntPtr* args)
+[xUnit.net 00:00:01.49]            at System.Reflection.MethodBaseInvoker.InvokeWithNoArgs(Object obj, BindingFlags invokeAttr)
+[xUnit.net 00:00:01.50]     OpenSymphony.Workflow.Tests.WorkflowTests.ResolvesRemoteHttpsOpenHandsTransportWithPathAndAuth [FAIL]
+[xUnit.net 00:00:01.50]       workflow should parse
+[xUnit.net 00:00:01.50]       Stack Trace:
+[xUnit.net 00:00:01.50]         D:\Learn\dotSymphony\tests\OpenSymphony.Workflow.Tests\WorkflowTests.cs(668,0): at OpenSymphony.Workflow.Tests.WorkflowTests.ResolvesRemoteHttpsOpenHandsTransportWithPathAndAuth()
+[xUnit.net 00:00:01.50]            at System.Reflection.MethodBaseInvoker.InterpretedInvoke_Method(Object obj, IntPtr* args)
+[xUnit.net 00:00:01.50]            at System.Reflection.MethodBaseInvoker.InvokeWithNoArgs(Object obj, BindingFlags invokeAttr)
+  Passed OpenSymphony.Workflow.Tests.WorkflowTests.RejectsRemoteHttpsOpenHandsTransportWithoutAuthEnv [6 ms]
+  Failed OpenSymphony.Workflow.Tests.WorkflowTests.ParsesWorkflowWithoutFrontMatter [1 ms]
+  Error Message:
+   Assert.Equal() Failure: Values differ
+Expected: WorkflowFrontMatter { Tracker = TrackerFrontMatter { Kind = , Endpoint = , ApiKey = , ProjectSlug = , ActiveStates = , TerminalStates =  }, Polling = PollingFrontMatter { IntervalMs =  }, Workspace = WorkspaceFrontMatter { Root =  }, Hooks = HooksFrontMatter { AfterCreate = , BeforeRun = , AfterRun = , BeforeRemove = , TimeoutMs =  }, Agent = AgentFrontMatter { MaxConcurrentAgents = , MaxTurns = , MaxRetryBackoffMs = , StallTimeoutMs = , MaxConcurrentAgentsByState =  }, OpenHands = OpenHandsFrontMatter { Transport = OpenHandsTransportFrontMatter { BaseUrl = , SessionApiKeyEnv =  }, LocalServer = OpenHandsLocalServerFrontMatter { Enabled = , Command = , StartupTimeoutMs = , ReadinessProbePath = , Env = System.Collections.Generic.SortedDictionary`2[System.String,System.String] }, Conversation = OpenHandsConversationFrontMatter { ReusePolicy = , PersistenceDirRelative = , MaxIterations = , StuckDetection = , ConfirmationPolicy = , Agent =  }, Websocket = OpenHandsWebSocketFrontMatter { Enabled = , ReadyTimeoutMs = , ReconnectInitialMs = , ReconnectMaxMs = , AuthMode = , QueryParamName =  }, LegacyLinearBridge =  }, Routing = RoutingFrontMatter { Harness = , Model = , ModelProfile = , HarnessEnv = , ModelEnv = , ModelProfileEnv =  }, Codex = , Logging = , Extensions = System.Collections.Generic.SortedDictionary`2[System.String,System.Object] }
+Actual:   WorkflowFrontMatter { Tracker = TrackerFrontMatter { Kind = , Endpoint = , ApiKey = , ProjectSlug = , ActiveStates = , TerminalStates =  }, Polling = PollingFrontMatter { IntervalMs =  }, Workspace = WorkspaceFrontMatter { Root =  }, Hooks = HooksFrontMatter { AfterCreate = , BeforeRun = , AfterRun = , BeforeRemove = , TimeoutMs =  }, Agent = AgentFrontMatter { MaxConcurrentAgents = , MaxTurns = , MaxRetryBackoffMs = , StallTimeoutMs = , MaxConcurrentAgentsByState =  }, OpenHands = OpenHandsFrontMatter { Transport = OpenHandsTransportFrontMatter { BaseUrl = , SessionApiKeyEnv =  }, LocalServer = OpenHandsLocalServerFrontMatter { Enabled = , Command = , StartupTimeoutMs = , ReadinessProbePath = , Env = System.Collections.Generic.SortedDictionary`2[System.String,System.String] }, Conversation = OpenHandsConversationFrontMatter { ReusePolicy = , PersistenceDirRelative = , MaxIterations = , StuckDetection = , ConfirmationPolicy = , Agent =  }, Websocket = OpenHandsWebSocketFrontMatter { Enabled = , ReadyTimeoutMs = , ReconnectInitialMs = , ReconnectMaxMs = , AuthMode = , QueryParamName =  }, LegacyLinearBridge =  }, Routing = RoutingFrontMatter { Harness = , Model = , ModelProfile = , HarnessEnv = , ModelEnv = , ModelProfileEnv =  }, Codex = , Logging = , Extensions = System.Collections.Generic.SortedDictionary`2[System.String,System.Object] }
+  Stack Trace:
+     at OpenSymphony.Workflow.Tests.WorkflowTests.ParsesWorkflowWithoutFrontMatter() in D:\Learn\dotSymphony\tests\OpenSymphony.Workflow.Tests\WorkflowTests.cs:line 183
+   at System.Reflection.MethodBaseInvoker.InterpretedInvoke_Method(Object obj, IntPtr* args)
+   at System.Reflection.MethodBaseInvoker.InvokeWithNoArgs(Object obj, BindingFlags invokeAttr)
+  Failed OpenSymphony.Workflow.Tests.WorkflowTests.ResolvesRemoteHttpsOpenHandsTransportWithPathAndAuth [5 ms]
+  Error Message:
+   workflow should parse
+  Stack Trace:
+     at OpenSymphony.Workflow.Tests.WorkflowTests.ResolvesRemoteHttpsOpenHandsTransportWithPathAndAuth() in D:\Learn\dotSymphony\tests\OpenSymphony.Workflow.Tests\WorkflowTests.cs:line 668
+   at System.Reflection.MethodBaseInvoker.InterpretedInvoke_Method(Object obj, IntPtr* args)
+   at System.Reflection.MethodBaseInvoker.InvokeWithNoArgs(Object obj, BindingFlags invokeAttr)
+  Passed OpenSymphony.Workflow.Tests.WorkflowTests.ResolvesRelativeWorkspaceRootsAgainstRelativeWorkflowDirectories [3 ms]
+  Passed OpenSymphony.Workflow.Tests.WorkflowTests.ResolvesExplicitOpenHandsLocalServerCommand [15 ms]
+  Passed OpenSymphony.Workflow.Tests.WorkflowTests.PreservesWhitespaceSensitivePromptBody [1 ms]
+  Passed OpenSymphony.Workflow.Tests.WorkflowTests.UsesDefaultPromptWhenBodyIsWhitespaceOnly [1 ms]
+  Passed OpenSymphony.Workflow.Tests.WorkflowTests.RejectsOpenHandsMaxIterationsAboveU32Range [4 ms]
+  Passed OpenSymphony.Workflow.Tests.WorkflowTests.RejectsInvalidOpenHandsTransportBaseUrls [17 ms]
+[xUnit.net 00:00:01.55]     OpenSymphony.Workflow.Tests.WorkflowTests.LoadsCheckedInWorkflows [FAIL]
+[xUnit.net 00:00:01.55]       repo root workflow should parse
+[xUnit.net 00:00:01.55]       Stack Trace:
+[xUnit.net 00:00:01.55]         D:\Learn\dotSymphony\tests\OpenSymphony.Workflow.Tests\WorkflowTests.cs(262,0): at OpenSymphony.Workflow.Tests.WorkflowTests.LoadsCheckedInWorkflows()
+[xUnit.net 00:00:01.55]            at System.Reflection.MethodBaseInvoker.InterpretedInvoke_Method(Object obj, IntPtr* args)
+[xUnit.net 00:00:01.55]            at System.Reflection.MethodBaseInvoker.InvokeWithNoArgs(Object obj, BindingFlags invokeAttr)
+[xUnit.net 00:00:01.55]       workflow should parse
+[xUnit.net 00:00:01.55]     OpenSymphony.Workflow.Tests.WorkflowTests.ResolvesEnvSubstitutionAndPathRules [FAIL]
+[xUnit.net 00:00:01.55]       Stack Trace:
+[xUnit.net 00:00:01.55]         D:\Learn\dotSymphony\tests\OpenSymphony.Workflow.Tests\WorkflowTests.cs(452,0): at OpenSymphony.Workflow.Tests.WorkflowTests.ResolvesEnvSubstitutionAndPathRules()
+[xUnit.net 00:00:01.55]            at System.Reflection.MethodBaseInvoker.InterpretedInvoke_Method(Object obj, IntPtr* args)
+[xUnit.net 00:00:01.55]            at System.Reflection.MethodBaseInvoker.InvokeWithNoArgs(Object obj, BindingFlags invokeAttr)
+[xUnit.net 00:00:01.56]     OpenSymphony.Workflow.Tests.WorkflowTests.ResolvesRelativeWorkspacePathsAgainstWorkflowDirectory [FAIL]
+[xUnit.net 00:00:01.56]       Assert.Equal() Failure: Strings differ
+[xUnit.net 00:00:01.56]                   ↓ (pos 1)
+[xUnit.net 00:00:01.56]       Expected: "/repo/config/nested/workspaces"
+[xUnit.net 00:00:01.56]       Actual:   "//repo/config/nested/workspaces"
+[xUnit.net 00:00:01.56]                   ↑ (pos 1)
+[xUnit.net 00:00:01.56]       Stack Trace:
+[xUnit.net 00:00:01.56]         D:\Learn\dotSymphony\tests\OpenSymphony.Workflow.Tests\WorkflowTests.cs(1076,0): at OpenSymphony.Workflow.Tests.WorkflowTests.ResolvesRelativeWorkspacePathsAgainstWorkflowDirectory()
+[xUnit.net 00:00:01.56]            at System.Reflection.MethodBaseInvoker.InterpretedInvoke_Method(Object obj, IntPtr* args)
+[xUnit.net 00:00:01.56]            at System.Reflection.MethodBaseInvoker.InvokeWithNoArgs(Object obj, BindingFlags invokeAttr)
+[xUnit.net 00:00:01.56]     OpenSymphony.Workflow.Tests.WorkflowTests.ParsesLeadingThematicBreaksAsPromptBodyWhenFrontMatterIsNotAMap [FAIL]
+[xUnit.net 00:00:01.56]       Assert.Equal() Failure: Values differ
+[xUnit.net 00:00:01.56]       Expected: WorkflowFrontMatter { Tracker = TrackerFrontMatter { Kind = , Endpoint = , ApiKey = , ProjectSlug = , ActiveStates = , TerminalStates =  }, Polling = PollingFrontMatter { IntervalMs =  }, Workspace = WorkspaceFrontMatter { Root =  }, Hooks = HooksFrontMatter { AfterCreate = , BeforeRun = , AfterRun = , BeforeRemove = , TimeoutMs =  }, Agent = AgentFrontMatter { MaxConcurrentAgents = , MaxTurns = , MaxRetryBackoffMs = , StallTimeoutMs = , MaxConcurrentAgentsByState =  }, OpenHands = OpenHandsFrontMatter { Transport = OpenHandsTransportFrontMatter { BaseUrl = , SessionApiKeyEnv =  }, LocalServer = OpenHandsLocalServerFrontMatter { Enabled = , Command = , StartupTimeoutMs = , ReadinessProbePath = , Env = System.Collections.Generic.SortedDictionary`2[System.String,System.String] }, Conversation = OpenHandsConversationFrontMatter { ReusePolicy = , PersistenceDirRelative = , MaxIterations = , StuckDetection = , ConfirmationPolicy = , Agent =  }, Websocket = OpenHandsWebSocketFrontMatter { Enabled = , ReadyTimeoutMs = , ReconnectInitialMs = , ReconnectMaxMs = , AuthMode = , QueryParamName =  }, LegacyLinearBridge =  }, Routing = RoutingFrontMatter { Harness = , Model = , ModelProfile = , HarnessEnv = , ModelEnv = , ModelProfileEnv =  }, Codex = , Logging = , Extensions = System.Collections.Generic.SortedDictionary`2[System.String,System.Object] }
+[xUnit.net 00:00:01.56]       Actual:   WorkflowFrontMatter { Tracker = TrackerFrontMatter { Kind = , Endpoint = , ApiKey = , ProjectSlug = , ActiveStates = , TerminalStates =  }, Polling = PollingFrontMatter { IntervalMs =  }, Workspace = WorkspaceFrontMatter { Root =  }, Hooks = HooksFrontMatter { AfterCreate = , BeforeRun = , AfterRun = , BeforeRemove = , TimeoutMs =  }, Agent = AgentFrontMatter { MaxConcurrentAgents = , MaxTurns = , MaxRetryBackoffMs = , StallTimeoutMs = , MaxConcurrentAgentsByState =  }, OpenHands = OpenHandsFrontMatter { Transport = OpenHandsTransportFrontMatter { BaseUrl = , SessionApiKeyEnv =  }, LocalServer = OpenHandsLocalServerFrontMatter { Enabled = , Command = , StartupTimeoutMs = , ReadinessProbePath = , Env = System.Collections.Generic.SortedDictionary`2[System.String,System.String] }, Conversation = OpenHandsConversationFrontMatter { ReusePolicy = , PersistenceDirRelative = , MaxIterations = , StuckDetection = , ConfirmationPolicy = , Agent =  }, Websocket = OpenHandsWebSocketFrontMatter { Enabled = , ReadyTimeoutMs = , ReconnectInitialMs = , ReconnectMaxMs = , AuthMode = , QueryParamName =  }, LegacyLinearBridge =  }, Routing = RoutingFrontMatter { Harness = , Model = , ModelProfile = , HarnessEnv = , ModelEnv = , ModelProfileEnv =  }, Codex = , Logging = , Extensions = System.Collections.Generic.SortedDictionary`2[System.String,System.Object] }
+[xUnit.net 00:00:01.56]       Stack Trace:
+[xUnit.net 00:00:01.56]         D:\Learn\dotSymphony\tests\OpenSymphony.Workflow.Tests\WorkflowTests.cs(216,0): at OpenSymphony.Workflow.Tests.WorkflowTests.ParsesLeadingThematicBreaksAsPromptBodyWhenFrontMatterIsNotAMap()
+[xUnit.net 00:00:01.56]            at System.Reflection.MethodBaseInvoker.InterpretedInvoke_Method(Object obj, IntPtr* args)
+[xUnit.net 00:00:01.56]            at System.Reflection.MethodBaseInvoker.InvokeWithNoArgs(Object obj, BindingFlags invokeAttr)
+  Failed OpenSymphony.Workflow.Tests.WorkflowTests.LoadsCheckedInWorkflows [5 ms]
+  Error Message:
+   repo root workflow should parse
+  Stack Trace:
+     at OpenSymphony.Workflow.Tests.WorkflowTests.LoadsCheckedInWorkflows() in D:\Learn\dotSymphony\tests\OpenSymphony.Workflow.Tests\WorkflowTests.cs:line 262
+   at System.Reflection.MethodBaseInvoker.InterpretedInvoke_Method(Object obj, IntPtr* args)
+   at System.Reflection.MethodBaseInvoker.InvokeWithNoArgs(Object obj, BindingFlags invokeAttr)
+  Failed OpenSymphony.Workflow.Tests.WorkflowTests.ResolvesEnvSubstitutionAndPathRules [6 ms]
+  Error Message:
+   workflow should parse
+  Stack Trace:
+     at OpenSymphony.Workflow.Tests.WorkflowTests.ResolvesEnvSubstitutionAndPathRules() in D:\Learn\dotSymphony\tests\OpenSymphony.Workflow.Tests\WorkflowTests.cs:line 452
+   at System.Reflection.MethodBaseInvoker.InterpretedInvoke_Method(Object obj, IntPtr* args)
+   at System.Reflection.MethodBaseInvoker.InvokeWithNoArgs(Object obj, BindingFlags invokeAttr)
+  Failed OpenSymphony.Workflow.Tests.WorkflowTests.ResolvesRelativeWorkspacePathsAgainstWorkflowDirectory [2 ms]
+  Error Message:
+   Assert.Equal() Failure: Strings differ
+            ↓ (pos 1)
+Expected: "/repo/config/nested/workspaces"
+Actual:   "//repo/config/nested/workspaces"
+            ↑ (pos 1)
+  Stack Trace:
+     at OpenSymphony.Workflow.Tests.WorkflowTests.ResolvesRelativeWorkspacePathsAgainstWorkflowDirectory() in D:\Learn\dotSymphony\tests\OpenSymphony.Workflow.Tests\WorkflowTests.cs:line 1076
+   at System.Reflection.MethodBaseInvoker.InterpretedInvoke_Method(Object obj, IntPtr* args)
+   at System.Reflection.MethodBaseInvoker.InvokeWithNoArgs(Object obj, BindingFlags invokeAttr)
+  Failed OpenSymphony.Workflow.Tests.WorkflowTests.ParsesLeadingThematicBreaksAsPromptBodyWhenFrontMatterIsNotAMap [1 ms]
+  Error Message:
+   Assert.Equal() Failure: Values differ
+Expected: WorkflowFrontMatter { Tracker = TrackerFrontMatter { Kind = , Endpoint = , ApiKey = , ProjectSlug = , ActiveStates = , TerminalStates =  }, Polling = PollingFrontMatter { IntervalMs =  }, Workspace = WorkspaceFrontMatter { Root =  }, Hooks = HooksFrontMatter { AfterCreate = , BeforeRun = , AfterRun = , BeforeRemove = , TimeoutMs =  }, Agent = AgentFrontMatter { MaxConcurrentAgents = , MaxTurns = , MaxRetryBackoffMs = , StallTimeoutMs = , MaxConcurrentAgentsByState =  }, OpenHands = OpenHandsFrontMatter { Transport = OpenHandsTransportFrontMatter { BaseUrl = , SessionApiKeyEnv =  }, LocalServer = OpenHandsLocalServerFrontMatter { Enabled = , Command = , StartupTimeoutMs = , ReadinessProbePath = , Env = System.Collections.Generic.SortedDictionary`2[System.String,System.String] }, Conversation = OpenHandsConversationFrontMatter { ReusePolicy = , PersistenceDirRelative = , MaxIterations = , StuckDetection = , ConfirmationPolicy = , Agent =  }, Websocket = OpenHandsWebSocketFrontMatter { Enabled = , ReadyTimeoutMs = , ReconnectInitialMs = , ReconnectMaxMs = , AuthMode = , QueryParamName =  }, LegacyLinearBridge =  }, Routing = RoutingFrontMatter { Harness = , Model = , ModelProfile = , HarnessEnv = , ModelEnv = , ModelProfileEnv =  }, Codex = , Logging = , Extensions = System.Collections.Generic.SortedDictionary`2[System.String,System.Object] }
+Actual:   WorkflowFrontMatter { Tracker = TrackerFrontMatter { Kind = , Endpoint = , ApiKey = , ProjectSlug = , ActiveStates = , TerminalStates =  }, Polling = PollingFrontMatter { IntervalMs =  }, Workspace = WorkspaceFrontMatter { Root =  }, Hooks = HooksFrontMatter { AfterCreate = , BeforeRun = , AfterRun = , BeforeRemove = , TimeoutMs =  }, Agent = AgentFrontMatter { MaxConcurrentAgents = , MaxTurns = , MaxRetryBackoffMs = , StallTimeoutMs = , MaxConcurrentAgentsByState =  }, OpenHands = OpenHandsFrontMatter { Transport = OpenHandsTransportFrontMatter { BaseUrl = , SessionApiKeyEnv =  }, LocalServer = OpenHandsLocalServerFrontMatter { Enabled = , Command = , StartupTimeoutMs = , ReadinessProbePath = , Env = System.Collections.Generic.SortedDictionary`2[System.String,System.String] }, Conversation = OpenHandsConversationFrontMatter { ReusePolicy = , PersistenceDirRelative = , MaxIterations = , StuckDetection = , ConfirmationPolicy = , Agent =  }, Websocket = OpenHandsWebSocketFrontMatter { Enabled = , ReadyTimeoutMs = , ReconnectInitialMs = , ReconnectMaxMs = , AuthMode = , QueryParamName =  }, LegacyLinearBridge =  }, Routing = RoutingFrontMatter { Harness = , Model = , ModelProfile = , HarnessEnv = , ModelEnv = , ModelProfileEnv =  }, Codex = , Logging = , Extensions = System.Collections.Generic.SortedDictionary`2[System.String,System.Object] }
+  Stack Trace:
+     at OpenSymphony.Workflow.Tests.WorkflowTests.ParsesLeadingThematicBreaksAsPromptBodyWhenFrontMatterIsNotAMap() in D:\Learn\dotSymphony\tests\OpenSymphony.Workflow.Tests\WorkflowTests.cs:line 216
+   at System.Reflection.MethodBaseInvoker.InterpretedInvoke_Method(Object obj, IntPtr* args)
+   at System.Reflection.MethodBaseInvoker.InvokeWithNoArgs(Object obj, BindingFlags invokeAttr)
+  Passed OpenSymphony.Workflow.Tests.WorkflowTests.RejectsUnknownTopLevelNamespaces [2 ms]
+  Passed OpenSymphony.Workflow.Tests.WorkflowTests.RejectsPersistencePathsThatEscapeTheWorkspace [3 ms]
+  Passed OpenSymphony.Workflow.Tests.WorkflowTests.DefaultsConfirmationPolicyKindWhenBlockOmitsIt [7 ms]
+  Passed OpenSymphony.Workflow.Tests.WorkflowTests.RejectsConfirmationPolicyOptionsThatCannotReachRuntime [3 ms]
+  Passed OpenSymphony.Workflow.Tests.WorkflowTests.RejectsUnsupportedOpenHandsLlmOptionOverrides [7 ms]
+[xUnit.net 00:00:01.59]     OpenSymphony.Workflow.Tests.WorkflowTests.ResolvesBareWorkspaceRootsAgainstWorkflowDirectory [FAIL]
+[xUnit.net 00:00:01.59]       Assert.Equal() Failure: Strings differ
+[xUnit.net 00:00:01.59]                   ↓ (pos 1)
+[xUnit.net 00:00:01.59]       Expected: "/repo/config/workspaces"
+[xUnit.net 00:00:01.59]       Actual:   "//repo/config/workspaces"
+[xUnit.net 00:00:01.59]                   ↑ (pos 1)
+[xUnit.net 00:00:01.59]       Stack Trace:
+[xUnit.net 00:00:01.59]         D:\Learn\dotSymphony\tests\OpenSymphony.Workflow.Tests\WorkflowTests.cs(1093,0): at OpenSymphony.Workflow.Tests.WorkflowTests.ResolvesBareWorkspaceRootsAgainstWorkflowDirectory()
+[xUnit.net 00:00:01.59]            at System.Reflection.MethodBaseInvoker.InterpretedInvoke_Method(Object obj, IntPtr* args)
+[xUnit.net 00:00:01.59]            at System.Reflection.MethodBaseInvoker.InvokeWithNoArgs(Object obj, BindingFlags invokeAttr)
+[xUnit.net 00:00:01.60]   Finished:    OpenSymphony.Workflow.Tests
+  Failed OpenSymphony.Workflow.Tests.WorkflowTests.ResolvesBareWorkspaceRootsAgainstWorkflowDirectory [3 ms]
+  Error Message:
+   Assert.Equal() Failure: Strings differ
+            ↓ (pos 1)
+Expected: "/repo/config/workspaces"
+Actual:   "//repo/config/workspaces"
+            ↑ (pos 1)
+  Stack Trace:
+     at OpenSymphony.Workflow.Tests.WorkflowTests.ResolvesBareWorkspaceRootsAgainstWorkflowDirectory() in D:\Learn\dotSymphony\tests\OpenSymphony.Workflow.Tests\WorkflowTests.cs:line 1093
+   at System.Reflection.MethodBaseInvoker.InterpretedInvoke_Method(Object obj, IntPtr* args)
+   at System.Reflection.MethodBaseInvoker.InvokeWithNoArgs(Object obj, BindingFlags invokeAttr)
+  Passed OpenSymphony.Workflow.Tests.WorkflowTests.MissingTrackerTerminalStatesFail [1 ms]
+  Passed OpenSymphony.Workflow.Tests.WorkflowTests.RejectsQueryOrFragmentOpenHandsTransportBaseUrl [5 ms]
+
+Test Run Failed.
+Total tests: 66
+     Passed: 46
+     Failed: 20
+ Total time: 3.0484 Seconds

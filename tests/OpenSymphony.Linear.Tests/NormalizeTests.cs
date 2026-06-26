@@ -13,7 +13,7 @@ public class NormalizeTests
     [Fact]
     public void FractionalPriorityIsRejected()
     {
-        Assert.Throws<LinearError>(() => Normalize.NormalizePriority(1.5));
+        Assert.Throws<LinearError.InvalidResponseError>(() => Normalize.NormalizePriority(1.5));
     }
 
     [Fact]
@@ -26,6 +26,6 @@ public class NormalizeTests
     [Fact]
     public void UndocumentedLinearPriorityValuesAreRejected()
     {
-        Assert.Throws<LinearError>(() => Normalize.NormalizePriority(5.0));
+        Assert.Throws<LinearError.InvalidResponseError>(() => Normalize.NormalizePriority(5.0));
     }
 }
