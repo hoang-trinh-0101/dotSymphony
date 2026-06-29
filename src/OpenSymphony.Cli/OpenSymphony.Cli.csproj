@@ -1,0 +1,24 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <ItemGroup>
+    <ProjectReference Include="..\OpenSymphony.Domain\OpenSymphony.Domain.csproj" />
+    <ProjectReference Include="..\OpenSymphony.GatewaySchema\OpenSymphony.GatewaySchema.csproj" />
+    <ProjectReference Include="..\OpenSymphony.Gateway\OpenSymphony.Gateway.csproj" />
+    <ProjectReference Include="..\OpenSymphony.Control\OpenSymphony.Control.csproj" />
+    <ProjectReference Include="..\OpenSymphony.Orchestrator\OpenSymphony.Orchestrator.csproj" />
+    <ProjectReference Include="..\OpenSymphony.Workflow\OpenSymphony.Workflow.csproj" />
+    <ProjectReference Include="..\OpenSymphony.Workspace\OpenSymphony.Workspace.csproj" />
+    <ProjectReference Include="..\OpenSymphony.OpenHands\OpenSymphony.OpenHands.csproj" />
+    <ProjectReference Include="..\OpenSymphony.Codex\OpenSymphony.Codex.csproj" />
+    <ProjectReference Include="..\OpenSymphony.Linear\OpenSymphony.Linear.csproj" />
+    <ProjectReference Include="..\OpenSymphony.Memory\OpenSymphony.Memory.csproj" />
+    <ProjectReference Include="..\OpenSymphony.Planning\OpenSymphony.Planning.csproj" />
+  </ItemGroup>
+
+  <PropertyGroup>
+    <TargetFramework>net10.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+</Project>
