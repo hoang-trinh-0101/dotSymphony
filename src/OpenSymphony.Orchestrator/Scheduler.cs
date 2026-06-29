@@ -213,7 +213,7 @@ public sealed class Scheduler<TrackerT, WorkspaceT, WorkerT>
             var execution = new IssueExecution(issue, observedAt);
             var attachResult = execution.AttachWorkspace(record.Workspace);
             if (attachResult.IsErr) throw SchedulerError.FromStateTransition(attachResult.Error);
-            var releaseResult = execution.Release(observedAt, ReleaseReason.TrackerInactive, null);
+            var releaseResult = execution.Release(observedAt, Domain.ReleaseReason.TrackerInactive, null);
             if (releaseResult.IsErr) throw SchedulerError.FromStateTransition(releaseResult.Error);
             _executions[issue.Id] = releaseResult.Value;
         }
@@ -239,7 +239,7 @@ public sealed class Scheduler<TrackerT, WorkspaceT, WorkerT>
             {
                 if (!_executions.TryGetValue(issueId, out var existing)) continue;
                 var normalized = existing.Issue with { State = IssueStateFromName(terminalStateName, _config) };
-                await ReleaseIssue(issueId, normalized, observedAt, ReleaseReason.TrackerTerminal, true, WorkerAbortReason.TrackerTerminal);
+                await ReleaseIssue(issueId, normalized, observedAt, Domain.ReleaseReason.TrackerTerminal, true, WorkerAbortReason.TrackerTerminal);
                 continue;
             }
 
@@ -255,9 +255,9 @@ public sealed class Scheduler<TrackerT, WorkspaceT, WorkerT>
 
                 var (reason, cleanup, abortReason) = category switch
                 {
-                    IssueStateCategory.Terminal => (ReleaseReason.TrackerTerminal, true, (WorkerAbortReason?)WorkerAbortReason.TrackerTerminal),
-                    IssueStateCategory.NonActive => (ReleaseReason.TrackerInactive, false, (WorkerAbortReason?)WorkerAbortReason.TrackerInactive),
-                    _ => (default(ReleaseReason), false, (WorkerAbortReason?)null),
+                    IssueStateCategory.Terminal => (Domain.ReleaseReason.TrackerTerminal, true, (WorkerAbortReason?)WorkerAbortReason.TrackerTerminal),
+                    IssueStateCategory.NonActive => (Domain.ReleaseReason.TrackerInactive, false, (WorkerAbortReason?)WorkerAbortReason.TrackerInactive),
+                    _ => (default(Domain.ReleaseReason), false, (WorkerAbortReason?)null),
                 };
                 await ReleaseIssue(issueId, normalized, observedAt, reason, cleanup, abortReason);
             }
@@ -444,7 +444,7 @@ public sealed class Scheduler<TrackerT, WorkspaceT, WorkerT>
 
     async Task ReleaseIssue(
         StringIdentifier<IssueId> issueId, NormalizedIssue issue, TimestampMs observedAt,
-        ReleaseReason reason, bool cleanupTerminal, WorkerAbortReason? abortReason)
+        Domain.ReleaseReason reason, bool cleanupTerminal, WorkerAbortReason? abortReason)
     {
         var execution = RemoveExecution(issueId);
         if (execution is null) return;
@@ -489,7 +489,7 @@ public sealed class Scheduler<TrackerT, WorkspaceT, WorkerT>
 
         if (outcome.Outcome == WorkerOutcomeKind.Detached || outcome.Outcome == WorkerOutcomeKind.CancelFailed)
         {
-            var releaseResult = execution.Release(observedAt, ReleaseReason.TrackerInactive, outcome);
+            var releaseResult = execution.Release(observedAt, Domain.ReleaseReason.TrackerInactive, outcome);
             if (releaseResult.IsErr) throw SchedulerError.FromStateTransition(releaseResult.Error);
             return releaseResult.Value;
         }
@@ -708,10 +708,10 @@ internal static class SchedulerHelpers
         return null;
     }
 
-    public static ReleaseReason? NonActiveReleaseReason(IssueStateCategory category) => category switch
+    public static Domain.ReleaseReason? NonActiveReleaseReason(IssueStateCategory category) => category switch
     {
-        IssueStateCategory.Terminal => ReleaseReason.TrackerTerminal,
-        IssueStateCategory.NonActive => ReleaseReason.TrackerInactive,
+        IssueStateCategory.Terminal => Domain.ReleaseReason.TrackerTerminal,
+        IssueStateCategory.NonActive => Domain.ReleaseReason.TrackerInactive,
         _ => null,
     };
 
