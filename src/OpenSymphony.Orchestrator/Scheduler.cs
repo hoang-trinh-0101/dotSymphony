@@ -424,7 +424,7 @@ public sealed class Scheduler<TrackerT, WorkspaceT, WorkerT>
         var execution = RemoveExecution(issueId) ?? new IssueExecution(issue, observedAt);
 
         var wasTerminalOutcome = execution.LastWorkerOutcome is { } o &&
-            (o.Outcome == WorkerOutcomeKind.Detached || o.Outcome == WorkerOutcomeKind.CancelFailed);
+            (o.Outcome == WorkerOutcomeKind.Succeeded || o.Outcome == WorkerOutcomeKind.Detached || o.Outcome == WorkerOutcomeKind.CancelFailed);
         if (execution.Status == SchedulerStatus.Released && !wasTerminalOutcome)
         {
             var reopenResult = execution.Reopen(observedAt);

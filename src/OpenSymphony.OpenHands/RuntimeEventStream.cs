@@ -408,13 +408,11 @@ public sealed class RuntimeEventStream
         var inserted = _eventCache.MergeNewEvents(events);
         if (inserted.Count == 0) return 0;
 
-        Console.WriteLine($"[PushNewEvents] inserted {inserted.Count}: {string.Join(",", inserted.Select(e => $"{e.Id}@{e.Timestamp:O}"))}");
         _pendingDeliveryNeedsDrain = true;
         if (queueNew)
             QueuePendingEvents(inserted);
         if (inserted.Any(e => e.Kind == ConversationStateUpdateEventKind))
             RebuildStateMirror();
-        Console.WriteLine($"[PushNewEvents] state={_stateMirror.ExecutionStatus} terminal={_stateMirror.TerminalStatus()} cache=[{string.Join(",", _eventCache.Items.Select(e => e.Id))}]");
         return inserted.Count;
     }
 

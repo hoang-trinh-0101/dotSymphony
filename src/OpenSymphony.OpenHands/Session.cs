@@ -784,7 +784,6 @@ public sealed class IssueSessionRunner
             throw IssueSessionError.Unexpected("conversation manifest contained an invalid conversation ID");
 
         var baselineEventIds = activeSession.Stream.EventCache.Items.Select(e => e.Id).ToHashSet();
-        Console.WriteLine($"[PrepareTurn] baseline count={baselineEventIds.Count}, ids=[{string.Join(",", baselineEventIds)}]");
         return new PreparedTurn(conversationId, prompt, baselineEventIds);
     }
 
@@ -817,7 +816,6 @@ public sealed class IssueSessionRunner
         while (true)
         {
             var runResult = await _client.RunConversationAsync(preparedTurn.ConversationId, ct);
-            Console.WriteLine($"[StartTurn] RunConversation result ok={runResult.IsOk}, status={runResult.Error?.StatusCode}, items={activeSession.Stream.EventCache.Items.Count}");
             if (runResult.IsOk) break;
 
             if (runResult.Error.StatusCode == 409 && !hadConflict)
@@ -871,7 +869,6 @@ public sealed class IssueSessionRunner
             }
 
             var check = await TerminalOutcomeFromStateAsync(session.Stream, baselineEventIds, observer, ct);
-            Console.WriteLine($"[AwaitTerminal] check={check.GetType().Name}, state={session.Stream.StateMirror.ExecutionStatus}, terminal={session.Stream.StateMirror.TerminalStatus()}, cache={session.Stream.EventCache.Items.Count}");
             if (check is TerminalCheckResult.Terminal terminal)
             {
                 AccumulateTokens(session);
@@ -912,11 +909,8 @@ public sealed class IssueSessionRunner
             }
             catch (OperationCanceledException) when (!ct.IsCancellationRequested)
             {
-                Console.WriteLine("[AwaitTerminal] NextEventAsync canceled, continue");
                 continue;
             }
-
-            Console.WriteLine($"[AwaitTerminal] NextEventAsync ok={next.IsOk}, value={next.Value?.Id ?? "null"}, err={next.Error?.Message}");
 
             if (next.IsErr)
             {

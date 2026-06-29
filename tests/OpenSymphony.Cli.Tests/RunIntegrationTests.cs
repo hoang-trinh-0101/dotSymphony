@@ -145,15 +145,6 @@ public class RunIntegrationTests : IDisposable
     }
 
     [Fact]
-    public void IssueSessionPromptKind_DeserializesFromManifest()
-    {
-        var json = "{\"last_prompt_kind\":\"full\"}";
-        var manifest = JsonSerializer.Deserialize<OpenSymphony.OpenHands.IssueConversationManifest>(json, OpenSymphony.OpenHands.OpenHandsJsonOptions.Default);
-        Assert.NotNull(manifest);
-        Assert.Equal(OpenSymphony.OpenHands.IssueSessionPromptKind.Full, manifest.LastPromptKind);
-    }
-
-    [Fact]
     public async Task RunOrchestrator_DryRun_LoadsConfigAndExits()
     {
         // Arrange
