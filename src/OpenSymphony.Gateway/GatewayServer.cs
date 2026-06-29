@@ -55,47 +55,52 @@ public sealed class GatewayServer
         if (basePath is not null)
             routes = app.MapGroup(basePath);
 
+        RegisterRoutes(routes);
+
+        return app;
+    }
+
+    public void RegisterRoutes(IEndpointRouteBuilder routes)
+    {
         // Core health and snapshot endpoints
-        routes.MapGet("/healthz", Healthz);
-        routes.MapGet("/api/v1/snapshot", ControlSnapshot);
-        routes.MapGet("/api/v1/control/events", ControlEvents);
-        routes.MapGet("/api/v1/capabilities", Capabilities);
-        routes.MapGet("/api/v1/model-settings", ModelSettings);
-        routes.MapGet("/api/v1/model-settings/credential-status", ModelCredentialStatuses);
-        routes.MapGet("/api/v1/dashboard/snapshot", DashboardSnapshot);
-        routes.MapGet("/api/v1/events", Events);
+        routes.MapGet("/healthz", (Delegate)Healthz);
+        routes.MapGet("/api/v1/snapshot", (Delegate)ControlSnapshot);
+        routes.MapGet("/api/v1/control/events", (Delegate)ControlEvents);
+        routes.MapGet("/api/v1/capabilities", (Delegate)Capabilities);
+        routes.MapGet("/api/v1/model-settings", (Delegate)ModelSettings);
+        routes.MapGet("/api/v1/model-settings/credential-status", (Delegate)ModelCredentialStatuses);
+        routes.MapGet("/api/v1/dashboard/snapshot", (Delegate)DashboardSnapshot);
+        routes.MapGet("/api/v1/events", (Delegate)Events);
 
         // Action dispatch
-        routes.MapPost("/api/v1/actions/dispatch", DispatchAction);
+        routes.MapPost("/api/v1/actions/dispatch", (Delegate)DispatchAction);
 
         // Run detail endpoints (minimal implementation)
-        routes.MapGet("/api/v1/runs/{run_id}", GetRunDetail);
-        routes.MapGet("/api/v1/runs/{run_id}/events", GetRunEvents);
+        routes.MapGet("/api/v1/runs/{run_id}", (Delegate)GetRunDetail);
+        routes.MapGet("/api/v1/runs/{run_id}/events", (Delegate)GetRunEvents);
 
         // Project endpoints
-        routes.MapGet("/api/v1/projects", ListProjects);
-        routes.MapGet("/api/v1/projects/{project_id}", GetProject);
+        routes.MapGet("/api/v1/projects", (Delegate)ListProjects);
+        routes.MapGet("/api/v1/projects/{project_id}", (Delegate)GetProject);
 
         // WebSocket event stream
-        routes.MapGet("/api/v1/streams/events", EventStreamWs);
+        routes.MapGet("/api/v1/streams/events", (Delegate)EventStreamWs);
 
         // Task graph mutation endpoints
         var mutationState = new TaskGraphMutationState(_journal, _linearMutations);
         var mutationRoutes = routes.MapGroup("/api/v1/taskgraph");
-        mutationRoutes.MapPost("/milestone", CreateOrUpdateMilestone);
-        mutationRoutes.MapPost("/issue", CreateOrUpdateIssue);
-        mutationRoutes.MapPost("/sub-issue", CreateOrUpdateSubIssue);
-        mutationRoutes.MapPost("/relation", CreateRelation);
-        mutationRoutes.MapPost("/evidence", CreateEvidence);
+        mutationRoutes.MapPost("/milestone", (Delegate)CreateOrUpdateMilestone);
+        mutationRoutes.MapPost("/issue", (Delegate)CreateOrUpdateIssue);
+        mutationRoutes.MapPost("/sub-issue", (Delegate)CreateOrUpdateSubIssue);
+        mutationRoutes.MapPost("/relation", (Delegate)CreateRelation);
+        mutationRoutes.MapPost("/evidence", (Delegate)CreateEvidence);
 
         // Web assets (if configured)
         if (_webAssetsDir is not null)
         {
-            routes.MapGet("/app", WebAssetHandler);
-            routes.MapGet("/app/{*path}", WebAssetHandler);
+            routes.MapGet("/app", (Delegate)WebAssetHandler);
+            routes.MapGet("/app/{*path}", (Delegate)WebAssetHandler);
         }
-
-        return app;
     }
 
     private static readonly JsonSerializerOptions JsonOptions = new()
@@ -428,9 +433,7 @@ public sealed class GatewayServer
             snapshot.Metrics.TotalCostMicros
         );
 
-        var projects = snapshot.Issues.Count == 0
-            ? new List<ProjectSummary>()
-            : new List<ProjectSummary>
+        var projects = new List<ProjectSummary>
             {
                 new(
                     "default",
