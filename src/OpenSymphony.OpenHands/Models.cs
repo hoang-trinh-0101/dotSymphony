@@ -179,7 +179,7 @@ public sealed class EventEnvelope
         var dict = new Dictionary<string, object?>
         {
             ["id"] = Id,
-            ["timestamp"] = Timestamp.ToString("yyyy-MM-ddTHH:mm:ss.ffffff"),
+            ["timestamp"] = Timestamp.ToString("yyyy-MM-ddTHH:mm:ss.ffffffzzz"),
             ["source"] = Source,
             ["kind"] = Kind,
         };

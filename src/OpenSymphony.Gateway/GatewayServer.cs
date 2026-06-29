@@ -1,3 +1,4 @@
+using System.Net;
 using System.Text.Json;
 using System.Text.Json.Serialization;
 using Microsoft.AspNetCore.Builder;
@@ -29,6 +30,7 @@ public sealed class GatewayServer
     private readonly ILinearMutationClient? _linearMutations;
     private readonly CodexReadinessCache _codexReadinessCache;
     private readonly string? _webAssetsDir;
+    private WebApplication? _app;
 
     public GatewayServer(
         SnapshotStore store,
@@ -58,6 +60,25 @@ public sealed class GatewayServer
         RegisterRoutes(routes);
 
         return app;
+    }
+
+    public async Task StartAsync(IPEndPoint bind, CancellationToken ct = default)
+    {
+        if (_app is not null)
+            throw new InvalidOperationException("Gateway server is already started");
+
+        _app = BuildApp();
+        _app.Urls.Clear();
+        _app.Urls.Add($"http://{bind}");
+        await _app.StartAsync(ct);
+    }
+
+    public async Task StopAsync(CancellationToken ct = default)
+    {
+        if (_app is null) return;
+        await _app.StopAsync(ct);
+        await _app.DisposeAsync();
+        _app = null;
     }
 
     public void RegisterRoutes(IEndpointRouteBuilder routes)

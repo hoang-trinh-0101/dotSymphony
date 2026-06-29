@@ -3,6 +3,8 @@ using System.Net;
 using OpenSymphony.Control;
 using OpenSymphony.Domain;
 using OpenSymphony.Gateway;
+using OpenSymphony.Linear;
+using OpenSymphony.OpenHands;
 using OpenSymphony.Orchestrator;
 using OpenSymphony.Workflow;
 using OpenSymphony.Workspace;
@@ -47,7 +49,10 @@ public static class RunOrchestrator
     public static async Task RunOrchestratorAsync(
         string? configPath,
         bool dryRun,
-        CancellationToken ct = default)
+        CancellationToken ct = default,
+        Func<ResolvedWorkflow, ILinearClient>? trackerFactory = null,
+        Func<ResolvedWorkflow, RunMemoryEnv?, (OpenHandsClient, LocalServerSupervisor?)>? transportFactory = null,
+        Action<ControlPlaneDaemonSnapshot>? snapshotPublished = null)
     {
         // Resolve runtime config
         var runtime = await RunConfigResolver.ResolveRuntimeConfig(configPath, dryRun, ct);
@@ -58,8 +63,16 @@ public static class RunOrchestrator
         Console.WriteLine($"  Workflow: {runtime.WorkflowPath}");
         Console.WriteLine($"  Bind: {runtime.Bind}");
 
+        if (dryRun)
+        {
+            Console.WriteLine("  Dry run: config loaded; scheduler will not start");
+            return;
+        }
+
         // Build backends
-        var tracker = RunBackendBuilder.BuildLinearClient(runtime.Workflow);
+        var tracker = trackerFactory is not null
+            ? trackerFactory(runtime.Workflow)
+            : RunBackendBuilder.BuildLinearClient(runtime.Workflow);
         var trackerBackend = new RuntimeTrackerBackend(tracker);
 
         var workspaceConfig = RunBackendBuilder.BuildWorkspaceManagerConfig(runtime.Workflow);
@@ -89,13 +102,19 @@ public static class RunOrchestrator
                 runtime.TargetRepo)
             : null;
 
-        var (client, _) = RunBackendBuilder.BuildRuntimeTransport(
-            runtime, preparation.Tooling, memoryEnv);
+        var (client, supervisor) = transportFactory is not null
+            ? transportFactory(runtime.Workflow, memoryEnv)
+            : RunBackendBuilder.BuildRuntimeTransport(runtime, preparation.Tooling, memoryEnv);
 
-        // TODO: Probe OpenHands - implement OpenApiProbeAsync or equivalent
-        // await client.OpenApiProbeAsync();
+        // Probe OpenHands agent-server HTTP surface
+        var probe = await client.OpenapiProbeAsync(ct);
+        if (probe.IsErr)
+        {
+            supervisor?.Stop();
+            throw new RunCommandError($"OpenHands agent-server probe failed: {probe.Error.Message}");
+        }
 
-        var workerBackend = new RuntimeWorkerBackend();
+        var workerBackend = new RuntimeWorkerBackend(client, runtime.Workflow, workspaceManager, memoryEnv);
 
         // Create scheduler config
         var schedulerConfig = SchedulerConfig.FromWorkflow(runtime.Workflow);
@@ -113,8 +132,6 @@ public static class RunOrchestrator
         Console.WriteLine($"  Bootstrap: {bootstrapSnapshot.Issues.Count} issues loaded");
 
         // Start control plane server
-        // TODO: Implement proper Control.SnapshotStore initialization
-        // For now, create a minimal snapshot
         var initialSnapshot = new ControlPlaneDaemonSnapshot(
             DateTimeOffset.UtcNow,
             new ControlPlaneDaemonStatus(ControlPlaneDaemonState.Starting, DateTimeOffset.UtcNow, runtime.TargetRepo, "initializing"),
@@ -125,8 +142,8 @@ public static class RunOrchestrator
             new List<ControlPlaneRecentEvent>()
         );
         var snapshotStore = new SnapshotStore(initialSnapshot);
-        var gatewayServer = await StartControlPlaneServerAsync(
-            runtime.Bind, scheduler, snapshotStore, runtime.Workflow, ct);
+        var gatewayServer = new GatewayServer(snapshotStore);
+        await gatewayServer.StartAsync(runtime.Bind, ct);
 
         Console.WriteLine($"  Control plane listening on {runtime.Bind}");
 
@@ -167,7 +184,8 @@ public static class RunOrchestrator
                     memoryServerStatus,
                     ImmutableArray<ControlPlaneRecentEvent>.Empty);
 
-                snapshotStore.Publish(daemonSnapshot);
+                var published = snapshotStore.Publish(daemonSnapshot);
+                snapshotPublished?.Invoke(published.Snapshot);
             }
         }
         catch (OperationCanceledException)
@@ -177,29 +195,8 @@ public static class RunOrchestrator
         finally
         {
             Console.WriteLine("Shutting down orchestrator");
-            // TODO: Implement proper GatewayServer shutdown
-            // await gatewayServer.StopAsync(ct);
+            await gatewayServer.StopAsync(ct);
+            supervisor?.Stop();
         }
-    }
-
-    static async Task<GatewayServer> StartControlPlaneServerAsync(
-        IPEndPoint bind,
-        Scheduler<RuntimeTrackerBackend, RuntimeWorkspaceBackend, RuntimeWorkerBackend> scheduler,
-        SnapshotStore snapshotStore,
-        ResolvedWorkflow workflow,
-        CancellationToken ct)
-    {
-        // ht: Simplified control plane server startup
-        // Full implementation would:
-        // - Create GatewayServer with proper configuration
-        // - Wire up snapshot streaming
-        // - Handle SSE events
-        // TODO: Implement proper GatewayState initialization with correct parameters
-        var gatewayState = GatewayState.Create(snapshotStore);
-
-        var server = new GatewayServer(snapshotStore);
-        // TODO: Implement proper server startup
-        // await server.StartAsync(ct);
-        return server;
     }
 }

@@ -121,7 +121,14 @@ public sealed class LinearIssueRelationMutationResult
     public string RelatedIssueIdentifier { get; set; } = "";
 }
 
-public sealed class LinearClient
+public interface ILinearClient
+{
+    Task<List<TrackerIssue>> CandidateIssues();
+    Task<List<TrackerIssue>> TerminalIssues();
+    Task<List<TrackerIssueStateSnapshot>> IssueStatesByIds(IEnumerable<string> issueIds);
+}
+
+public sealed class LinearClient : ILinearClient
 {
     private const string DefaultBaseUrl = "https://api.linear.app/graphql";
     private const int DefaultPageSize = 50;

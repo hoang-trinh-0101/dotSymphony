@@ -487,6 +487,13 @@ public sealed class Scheduler<TrackerT, WorkspaceT, WorkerT>
             return releaseResult.Value;
         }
 
+        if (outcome.Outcome == WorkerOutcomeKind.Succeeded)
+        {
+            var releaseResult = execution.Release(observedAt, Domain.ReleaseReason.Completed, outcome);
+            if (releaseResult.IsErr) throw SchedulerError.FromStateTransition(releaseResult.Error);
+            return releaseResult.Value;
+        }
+
         if (outcome.Outcome == WorkerOutcomeKind.Detached || outcome.Outcome == WorkerOutcomeKind.CancelFailed)
         {
             var releaseResult = execution.Release(observedAt, Domain.ReleaseReason.TrackerInactive, outcome);

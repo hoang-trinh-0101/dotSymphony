@@ -1,5 +1,6 @@
 using System.Net.Http.Headers;
 using System.Net.Http.Json;
+using System.Net.WebSockets;
 using System.Text.Json;
 using System.Web;
 using OpenSymphony.Domain;
@@ -270,17 +271,30 @@ public sealed record OpenHandsProbeResult(
 public sealed class OpenHandsClient
 {
     private readonly HttpClient _http;
+    private readonly Func<Uri, CancellationToken, Task<WebSocket>> _webSocketFactory;
     internal readonly TransportConfig Transport;
 
-    public OpenHandsClient(TransportConfig transport) : this(transport, new HttpClient()) { }
+    public OpenHandsClient(TransportConfig transport) : this(transport, new HttpClient(), DefaultWebSocketFactory) { }
 
-    internal OpenHandsClient(TransportConfig transport, HttpClient http)
+    public OpenHandsClient(TransportConfig transport, HttpClient http) : this(transport, http, DefaultWebSocketFactory) { }
+
+    public OpenHandsClient(TransportConfig transport, HttpClient http, Func<Uri, CancellationToken, Task<WebSocket>> webSocketFactory)
     {
         Transport = transport;
         _http = http;
+        _webSocketFactory = webSocketFactory;
     }
 
     public string BaseUrl => Transport.BaseUrl;
+
+    internal Func<Uri, CancellationToken, Task<WebSocket>> WebSocketFactory => _webSocketFactory;
+
+    private static async Task<WebSocket> DefaultWebSocketFactory(Uri uri, CancellationToken ct)
+    {
+        var socket = new ClientWebSocket();
+        await socket.ConnectAsync(uri, ct);
+        return socket;
+    }
 
     public Result<TransportDiagnostics, OpenHandsError> TransportDiagnostics() => Transport.Diagnostics();
 
@@ -343,6 +357,17 @@ public sealed class OpenHandsClient
         var resp = await SendAsync(req.Value, "trigger conversation run", ct);
         if (resp.IsErr) return Result<AcceptedResponse, OpenHandsError>.Err(resp.Error);
         return await DecodeJsonAsync<AcceptedResponse>(resp.Value, "trigger conversation run", ct);
+    }
+
+    public async Task<Result<RuntimeEventStream, OpenHandsError>> ConnectStreamAsync(
+        Guid conversationId, RuntimeStreamConfig config, CancellationToken ct = default)
+    {
+        var conversation = await GetConversationAsync(conversationId, ct);
+        if (conversation.IsErr) return Result<RuntimeEventStream, OpenHandsError>.Err(conversation.Error);
+        var stream = new RuntimeEventStream(this, conversationId, config, conversation.Value, _webSocketFactory);
+        try { await stream.AttachAsync(ct); }
+        catch (OpenHandsError error) { return Result<RuntimeEventStream, OpenHandsError>.Err(error); }
+        return Result<RuntimeEventStream, OpenHandsError>.Ok(stream);
     }
 
     public async Task<Result<SearchConversationEventsResponse, OpenHandsError>> SearchEventsPageAsync(

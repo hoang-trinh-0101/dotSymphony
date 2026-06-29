@@ -20,6 +20,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\..\src\OpenSymphony.Cli\OpenSymphony.Cli.csproj" />
+    <ProjectReference Include="..\..\src\OpenSymphony.TestKit\OpenSymphony.TestKit.csproj" />
   </ItemGroup>
 
 </Project>

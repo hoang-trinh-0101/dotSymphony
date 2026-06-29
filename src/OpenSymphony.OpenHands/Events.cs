@@ -149,7 +149,7 @@ public abstract record KnownEvent
     private static UnknownEvent UnknownEventFrom(EventEnvelope envelope) =>
         new(envelope.Kind, envelope.Payload, envelope.Key, envelope.Value);
 
-    private static ConversationStateUpdatePayload? DecodeStateUpdate(EventEnvelope envelope)
+    internal static ConversationStateUpdatePayload? DecodeStateUpdate(EventEnvelope envelope)
     {
         if (envelope.Payload.ValueKind != JsonValueKind.Null &&
             !(envelope.Payload.ValueKind == JsonValueKind.Object && NoProperties(envelope.Payload)))

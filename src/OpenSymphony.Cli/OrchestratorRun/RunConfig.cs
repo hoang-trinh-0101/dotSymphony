@@ -3,6 +3,7 @@ using System.Text.Json;
 using OpenSymphony.OpenHands;
 using OpenSymphony.Workflow;
 using YamlDotNet.Serialization;
+using YamlDotNet.Serialization.NamingConventions;
 
 namespace OpenSymphony.Cli.OrchestratorRun;
 
@@ -114,7 +115,7 @@ public static class RunConfigResolver
         {
             var raw = await File.ReadAllTextAsync(actualConfigPath, ct);
             var deserializer = new DeserializerBuilder()
-                // TODO: Fix YamlDotNet naming convention - need to check correct API for version 18.1.0
+                .WithNamingConvention(UnderscoredNamingConvention.Instance)
                 .IgnoreUnmatchedProperties()
                 .Build();
             try
@@ -270,10 +271,30 @@ public static class RunConfigResolver
         RunConfigFile config,
         CancellationToken ct)
     {
-        // TODO: Implement environment variable expansion for config values
-        // For now, return config as-is to get build working
-        return config;
+        return new RunConfigFile
+        {
+            TargetRepo = await ExpandEnvAsync(config.TargetRepo, ct),
+            ControlPlane = new ControlPlaneConfigFile
+            {
+                Bind = await ExpandEnvAsync(config.ControlPlane.Bind, ct)
+            },
+            OpenHands = new RunOpenHandsConfigFile
+            {
+                ToolDir = await ExpandEnvAsync(config.OpenHands.ToolDir, ct)
+            },
+            Memory = new RunMemoryConfigFile
+            {
+                AutoCapture = config.Memory.AutoCapture,
+                AutoArchive = config.Memory.AutoArchive,
+                Serve = config.Memory.Serve,
+                Bind = await ExpandEnvAsync(config.Memory.Bind, ct),
+                TokenEnv = await ExpandEnvAsync(config.Memory.TokenEnv, ct)
+            }
+        };
     }
+
+    private static async Task<string?> ExpandEnvAsync(string? value, CancellationToken ct)
+        => value is null ? null : await ExpandEnvTokensAsync(value, ct);
 
     private static async Task<string> ExpandEnvTokensAsync(string value, CancellationToken ct)
     {
