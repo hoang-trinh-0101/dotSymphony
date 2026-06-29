@@ -5,6 +5,11 @@ namespace OpenSymphony.GatewaySchema;
 
 // ht: minimal port of gateway-schema event_journal + envelope types needed by OpenHands normalization.
 
+public static class GatewaySchemaConstants
+{
+    public const string Version = "1.0.0";
+}
+
 public enum EntityKind
 {
     Issue,
@@ -77,6 +82,12 @@ public sealed record EventKind
     public static EventKind HarnessToolCall => new("harness.tool_call");
     public static EventKind HarnessToolResult => new("harness.tool_result");
     public static EventKind HarnessConversationStateUpdate => new("harness.conversation_state_update");
+    public static EventKind ApprovalRequested => new("approval.requested");
+    public static EventKind ApprovalGranted => new("approval.granted");
+    public static EventKind ApprovalDenied => new("approval.denied");
+    public static EventKind RunCompleted => new("run.completed");
+    public static EventKind RunFailed => new("run.failed");
+    public static EventKind RunCancelled => new("run.cancelled");
     public static EventKind Unknown(string rawKind) => new(rawKind, null, rawKind);
 
     public bool IsUnknown => RawKind is not null;

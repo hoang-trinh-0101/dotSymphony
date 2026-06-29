@@ -1,0 +1,24 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net10.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <FrameworkReference Include="Microsoft.AspNetCore.App" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\OpenSymphony.Domain\OpenSymphony.Domain.csproj" />
+    <ProjectReference Include="..\OpenSymphony.GatewaySchema\OpenSymphony.GatewaySchema.csproj" />
+    <ProjectReference Include="..\OpenSymphony.Orchestrator\OpenSymphony.Orchestrator.csproj" />
+    <ProjectReference Include="..\OpenSymphony.Workflow\OpenSymphony.Workflow.csproj" />
+    <ProjectReference Include="..\OpenSymphony.Workspace\OpenSymphony.Workspace.csproj" />
+    <ProjectReference Include="..\OpenSymphony.Control\OpenSymphony.Control.csproj" />
+    <ProjectReference Include="..\OpenSymphony.OpenHands\OpenSymphony.OpenHands.csproj" />
+    <ProjectReference Include="..\OpenSymphony.Codex\OpenSymphony.Codex.csproj" />
+  </ItemGroup>
+
+</Project>
